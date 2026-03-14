@@ -31,24 +31,40 @@
 </div>
 
 <script>
-// ── Subsection config — built dynamically from JSON keys ──────
-// SUBSECTIONS is populated at runtime by discoverSubsections()
-let SUBSECTIONS = [];
+// ── Pool grouping config ───────────────────────────────────────
+// Keys listed here get merged into one pool section under a shared label.
+// The pill still knows its exact target type so it lands in the right slot.
+// Add more groups here as needed — anything not listed appears individually.
+const POOL_GROUPS = [
+  {
+    poolLabel: 'Signs Of Toxicity',
+    keys: ['signs of toxicity - early', 'signs of toxicity - late'],
+  },
+];
 
-function keyToSub(key) {
-  const id    = key.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  const label = key.replace(/[-_]/g, ' ')
-                   .split(' ')
-                   .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-                   .join(' ');
-  return { id, label, key };
+// ── Key helpers ────────────────────────────────────────────────
+function keyToId(key) {
+  return key.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+}
+
+function keyToLabel(key) {
+  return key.replace(/[-_]/g, ' ')
+            .split(' ')
+            .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+            .join(' ');
+}
+
+// Given a JSON key, return the pool label it should appear under
+function poolLabelFor(key) {
+  const group = POOL_GROUPS.find(g => g.keys.includes(key));
+  return group ? group.poolLabel : keyToLabel(key);
 }
 
 // Returns subsections for a single category (only its own keys)
 function subsectionsFor(cat) {
   return Object.keys(cat)
     .filter(k => k !== 'id' && k !== 'label')
-    .map(keyToSub);
+    .map(key => ({ id: keyToId(key), label: keyToLabel(key), key }));
 }
 
 // ── State ──────────────────────────────────────────────────────
@@ -68,18 +84,21 @@ function parseData(categories) {
         const label = match ? match[1].trim() : raw.trim();
         const hint  = match ? match[2].trim() : null;
 
-        const key = `${label.toLowerCase()}|${sub.id}`;
-        if (!itemMap[key]) {
-          itemMap[key] = {
-            id:          key.replace(/[^a-z0-9]/g, '-'),
+        // Pool key groups items that share a pool label + same text together
+        const poolLabel = poolLabelFor(sub.key);
+        const itemKey = `${label.toLowerCase()}|${sub.id}`;
+
+        if (!itemMap[itemKey]) {
+          itemMap[itemKey] = {
+            id:          itemKey.replace(/[^a-z0-9]/g, '-'),
             label,
             hint,
-            type:        sub.id,
-            typeLabel:   sub.label,
+            type:        sub.id,       // exact drop target (e.g. signs-of-toxicity---early)
+            poolLabel,                 // label shown in pool (e.g. "Signs Of Toxicity")
             correctCats: new Set(),
           };
         }
-        itemMap[key].correctCats.add(cat.id);
+        itemMap[itemKey].correctCats.add(cat.id);
       });
     });
   });
@@ -127,34 +146,27 @@ function buildPool() {
   const pool = document.getElementById('pool');
   pool.innerHTML = '<div class="pool-header">[ Item Pool ]</div>';
 
-  // Absorb dragover on the pool itself so the browser doesn't
-  // apply its default drag-highlight border to the container.
-  // We use preventDefault (not stopPropagation) so drop zones
-  // in the grid still work fine.
   pool.addEventListener('dragover',  e => e.preventDefault());
   pool.addEventListener('dragenter', e => e.preventDefault());
 
-  // Collect all unique subsection types across all items for pool grouping
-  const seenTypes = new Set();
-  const poolSubs = [];
+  // Group items by poolLabel, preserving first-seen order then shuffle sections
+  const sectionMap = new Map();
   allItems.forEach(item => {
-    if (!seenTypes.has(item.type)) {
-      seenTypes.add(item.type);
-      poolSubs.push({ id: item.type, label: item.typeLabel });
-    }
+    if (!sectionMap.has(item.poolLabel)) sectionMap.set(item.poolLabel, []);
+    sectionMap.get(item.poolLabel).push(item);
   });
 
-  poolSubs.forEach(sub => {
-    const group = shuffle(allItems.filter(i => i.type === sub.id));
-    if (group.length === 0) return;
+  // Shuffle both the section order and items within each section
+  const sections = shuffle([...sectionMap.entries()]);
 
+  sections.forEach(([label, items]) => {
     const section = document.createElement('div');
     section.className = 'pool-section';
-    section.innerHTML = `<div class="pool-section-label">${sub.label}</div>`;
+    section.innerHTML = `<div class="pool-section-label">${label}</div>`;
 
     const row = document.createElement('div');
     row.className = 'pool-row';
-    group.forEach(item => row.appendChild(makePill(item)));
+    shuffle(items).forEach(item => row.appendChild(makePill(item)));
 
     section.appendChild(row);
     pool.appendChild(section);
@@ -233,12 +245,9 @@ function checkComplete() {
 
 // ── Win animation ──────────────────────────────────────────────
 function startWinAnimation() {
-  const cats = document.querySelectorAll('.category');
-  cats.forEach((cat) => {
-    const delay = (Math.random() * 1.5).toFixed(2);
-    const duration = (2.5 + Math.random() * 1.5).toFixed(2);
-    cat.style.animationDelay = delay + 's';
-    cat.style.animationDuration = duration + 's';
+  document.querySelectorAll('.category').forEach(cat => {
+    cat.style.animationDelay    = (Math.random() * 1.5).toFixed(2) + 's';
+    cat.style.animationDuration = (2.5 + Math.random() * 1.5).toFixed(2) + 's';
     cat.classList.add('win-flicker');
   });
 }
