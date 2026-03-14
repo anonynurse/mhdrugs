@@ -1,0 +1,62 @@
+[
+  {
+    "id": "mood-stabilizer",
+    "label": "Mood Stabilizer",
+    "drugs": ["Lithium"],
+    "targets": [],
+    "side_effects": [],
+    "notes": []
+  },
+  {
+    "id": "ssri",
+    "label": "SSRI",
+    "drugs": ["Sertraline", "Fluoxetine", "Citalopram"],
+    "targets": ["Serotonin Transporter (SERT)"],
+    "side_effects": ["Sexual dysfunction", "Anxiety", "Insomnia"],
+    "notes": ["Discontinuation syndrome"]
+  },
+  {
+    "id": "snri",
+    "label": "SNRI",
+    "drugs": ["Venlafaxine", "Duloxetine"],
+    "targets": [],
+    "side_effects": [],
+    "notes": ["Discontinuation syndrome"]
+  },
+  {
+    "id": "ndri",
+    "label": "NDRI",
+    "drugs": ["Bupropion"],
+    "targets": [],
+    "side_effects": [],
+    "notes": []
+  },
+  {
+    "id": "anticonvulsant",
+    "label": "Anticonvulsant (used for bipolar)",
+    "drugs": [
+      "Carbamazepine",
+      "Divalproex Sodium (used for manic phase)",
+      "Lamotrigine (used for depressive phase)"
+    ],
+    "targets": [],
+    "side_effects": [],
+    "notes": []
+  },
+  {
+    "id": "tca",
+    "label": "TCA",
+    "drugs": [],
+    "targets": [],
+    "side_effects": [],
+    "notes": []
+  },
+  {
+    "id": "maoi",
+    "label": "MAOI",
+    "drugs": [],
+    "targets": [],
+    "side_effects": [],
+    "notes": []
+  }
+]
