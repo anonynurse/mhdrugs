@@ -9,12 +9,8 @@
   <style>
     /* ── Force landscape on mobile ── */
     @media screen and (max-width: 768px) and (orientation: portrait) {
-      #rotate-msg {
-        display: flex !important;
-      }
-      body > *:not(#rotate-msg) {
-        display: none !important;
-      }
+      #rotate-msg { display: flex !important; }
+      body > *:not(#rotate-msg) { display: none !important; }
     }
 
     #rotate-msg {
@@ -58,11 +54,39 @@
         box-shadow: 0 0 16px rgba(127,219,255,0.6) !important;
         transform: scale(1.08);
       }
-
       .sub-pills.tap-target {
         border-color: #7FDBFF88 !important;
         background: rgba(127,219,255,0.06) !important;
       }
+    }
+
+    /* ── Nested sub-zone ── */
+    .nested-zone-wrapper {
+      margin-top: 3px;
+      margin-left: 6px;
+      border-left: 1px solid #1a5a7a;
+      padding-left: 6px;
+    }
+
+    .nested-zone-label {
+      font-size: 0.38rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #3a8aaa;
+      margin-bottom: 2px;
+      margin-top: 2px;
+    }
+
+    .drug-pill.locked {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .drug-pill.locked:hover {
+      transform: none;
+      border-color: #2a7a9a;
+      box-shadow: none;
+      background: rgba(127,219,255,0.06);
     }
   </style>
 </head>
@@ -80,24 +104,17 @@
 <div id="error-banner"></div>
 
 <div class="layout">
-
-  <!-- Left: sticky pool -->
   <div class="pool-wrapper">
     <div class="pool" id="pool"></div>
     <button id="reset-btn" onclick="initGame()">↺ Reinitialise</button>
   </div>
-
-  <!-- Right: scrollable category grid -->
   <div class="grid-wrapper">
     <div class="grid" id="grid"></div>
   </div>
-
 </div>
 
 <script>
 // ── Pool grouping config ───────────────────────────────────────
-// Keys listed here get merged into one pool section under a shared label.
-// The pill still knows its exact target type so it lands in the right slot.
 const POOL_GROUPS = [
   {
     poolLabel: 'Signs Of Toxicity',
@@ -106,16 +123,9 @@ const POOL_GROUPS = [
 ];
 
 // ── Pool section order ─────────────────────────────────────────
-// Sections appear in this order in the pool. Any key not listed here
-// (or its group label) will appear at the end in discovery order.
 const POOL_SECTION_ORDER = [
-  'Drugs',
-  'Targets',
-  'Mechanism',
-  'Side Effects',
-  'Risks',
-  'Signs Of Toxicity',
-  'Notes',
+  'Drugs', 'Targets', 'Mechanism', 'Side Effects',
+  'Risks', 'Signs Of Toxicity', 'Signs', 'Notes',
 ];
 
 // ── Key helpers ────────────────────────────────────────────────
@@ -130,13 +140,11 @@ function keyToLabel(key) {
             .join(' ');
 }
 
-// Given a JSON key, return the pool label it should appear under
 function poolLabelFor(key) {
   const group = POOL_GROUPS.find(g => g.keys.includes(key));
   return group ? group.poolLabel : keyToLabel(key);
 }
 
-// Returns subsections for a single category (only its own keys)
 function subsectionsFor(cat) {
   return Object.keys(cat)
     .filter(k => k !== 'id' && k !== 'label')
@@ -144,40 +152,78 @@ function subsectionsFor(cat) {
 }
 
 // ── State ──────────────────────────────────────────────────────
-let allItems   = [];
-let placedLog  = {};
+let allItems     = [];   // flat list of all draggable items
+let placedLog    = {};   // itemId -> Set of "catId|subId" placed
+let unlockedLog  = {};   // parentItemId -> Set of "catId|subId" where children are unlocked
 let draggingId   = null;
-let selectedPill = null; // mobile tap state
+let selectedPill = null;
 
 const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
 
-// ── Parse JSON into flat items ─────────────────────────────────
+// ── Parse JSON ─────────────────────────────────────────────────
+// Entries can be:
+//   "plain string"
+//   { "label": "Parent", "signs": ["child1", "child2"], "otherKey": [...] }
+// Children get parentId set so they know who unlocks them.
+
 function parseData(categories) {
   const itemMap = {};
+
+  function addItem(label, hint, typeId, typeKey, poolLabel, catId, parentId) {
+    const itemKey = `${label.toLowerCase()}|${typeId}` + (parentId ? `|child-of-${parentId}` : '');
+    const id = itemKey.replace(/[^a-z0-9]/g, '-');
+    if (!itemMap[itemKey]) {
+      itemMap[itemKey] = {
+        id, label, hint,
+        type: typeId,
+        typeKey,
+        poolLabel,
+        correctCats: new Set(),
+        parentId: parentId || null,   // null = top-level, string = locked until parent placed
+        children: [],                 // nested sub-items keyed by "nestedTypeId"
+      };
+    }
+    itemMap[itemKey].correctCats.add(catId);
+    return id;
+  }
 
   categories.forEach(cat => {
     subsectionsFor(cat).forEach(sub => {
       const entries = cat[sub.key] || [];
       entries.forEach(raw => {
-        const match = raw.match(/^(.+?)\s*\(([^)]+)\)\s*$/);
-        const label = match ? match[1].trim() : raw.trim();
-        const hint  = match ? match[2].trim() : null;
 
-        // Pool key groups items that share a pool label + same text together
-        const poolLabel = poolLabelFor(sub.key);
-        const itemKey = `${label.toLowerCase()}|${sub.id}`;
+        if (typeof raw === 'string') {
+          // Plain item
+          const match = raw.match(/^(.+?)\s*\(([^)]+)\)\s*$/);
+          const label = match ? match[1].trim() : raw.trim();
+          const hint  = match ? match[2].trim() : null;
+          addItem(label, hint, sub.id, sub.key, poolLabelFor(sub.key), cat.id, null);
 
-        if (!itemMap[itemKey]) {
-          itemMap[itemKey] = {
-            id:          itemKey.replace(/[^a-z0-9]/g, '-'),
-            label,
-            hint,
-            type:        sub.id,       // exact drop target (e.g. signs-of-toxicity---early)
-            poolLabel,                 // label shown in pool (e.g. "Signs Of Toxicity")
-            correctCats: new Set(),
-          };
+        } else if (typeof raw === 'object' && raw.label) {
+          // Nested parent item
+          const parentLabel = raw.label;
+          const parentId = addItem(parentLabel, null, sub.id, sub.key, poolLabelFor(sub.key), cat.id, null);
+
+          // Each key besides "label" becomes a nested sub-section
+          Object.keys(raw).filter(k => k !== 'label').forEach(nestedKey => {
+            const nestedSub = { id: keyToId(nestedKey), label: keyToLabel(nestedKey), key: nestedKey };
+            const nestedEntries = raw[nestedKey] || [];
+            nestedEntries.forEach(childRaw => {
+              const match = typeof childRaw === 'string' && childRaw.match(/^(.+?)\s*\(([^)]+)\)\s*$/);
+              const childLabel = match ? match[1].trim() : String(childRaw).trim();
+              const childHint  = match ? match[2].trim() : null;
+              // Children use "Signs" as their pool section label
+              const childId = addItem(childLabel, childHint, nestedSub.id, nestedSub.key, keyToLabel(nestedKey), cat.id, parentId);
+              // Register the child under the parent
+              const parentItem = itemMap[Object.keys(itemMap).find(k => itemMap[k].id === parentId)];
+              if (parentItem) {
+                if (!parentItem.children.find(c => c.typeId === nestedSub.id)) {
+                  parentItem.children.push({ typeId: nestedSub.id, typeLabel: nestedSub.label });
+                }
+              }
+            });
+          });
         }
-        itemMap[itemKey].correctCats.add(cat.id);
       });
     });
   });
@@ -209,22 +255,27 @@ function buildGrid(categories) {
     grid.appendChild(box);
   });
 
+  attachDropZoneListeners();
+}
+
+function attachDropZoneListeners() {
   document.querySelectorAll('.sub-pills').forEach(zone => {
+    if (zone.dataset.listenersAttached) return;
+    zone.dataset.listenersAttached = 'true';
+
     zone.addEventListener('dragover',  e => { e.preventDefault(); zone.classList.add('drag-over'); });
     zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
     zone.addEventListener('drop', e => {
       e.preventDefault();
       zone.classList.remove('drag-over');
-      handleDrop(zone.dataset.cat, zone.dataset.sub);
+      handleDrop(zone.dataset.cat, zone.dataset.sub, zone.dataset.parentItemId || null);
     });
 
-    // Mobile: tap zone to drop selected pill
     zone.addEventListener('click', () => {
       if (!isMobile() || !selectedPill) return;
-      // Clear all highlights
       document.querySelectorAll('.sub-pills').forEach(z => z.classList.remove('tap-target'));
       selectedPill.classList.remove('tap-selected');
-      handleDrop(zone.dataset.cat, zone.dataset.sub);
+      handleDrop(zone.dataset.cat, zone.dataset.sub, zone.dataset.parentItemId || null);
       selectedPill = null;
     });
   });
@@ -234,35 +285,28 @@ function buildGrid(categories) {
 function buildPool() {
   const pool = document.getElementById('pool');
   pool.innerHTML = '<div class="pool-header">[ Item Pool ]</div>';
-
   pool.addEventListener('dragover',  e => e.preventDefault());
   pool.addEventListener('dragenter', e => e.preventDefault());
 
-  // Group items by poolLabel, preserving first-seen order then shuffle sections
   const sectionMap = new Map();
   allItems.forEach(item => {
     if (!sectionMap.has(item.poolLabel)) sectionMap.set(item.poolLabel, []);
     sectionMap.get(item.poolLabel).push(item);
   });
 
-  // Sort sections by POOL_SECTION_ORDER, append any unknown ones at end
   const sections = [...sectionMap.entries()].sort(([a], [b]) => {
     const ai = POOL_SECTION_ORDER.indexOf(a);
     const bi = POOL_SECTION_ORDER.indexOf(b);
-    const an = ai === -1 ? Infinity : ai;
-    const bn = bi === -1 ? Infinity : bi;
-    return an - bn;
+    return (ai === -1 ? Infinity : ai) - (bi === -1 ? Infinity : bi);
   });
 
   sections.forEach(([label, items]) => {
     const section = document.createElement('div');
     section.className = 'pool-section';
     section.innerHTML = `<div class="pool-section-label">${label}</div>`;
-
     const row = document.createElement('div');
     row.className = 'pool-row';
     shuffle(items).forEach(item => row.appendChild(makePill(item)));
-
     section.appendChild(row);
     pool.appendChild(section);
   });
@@ -270,76 +314,145 @@ function buildPool() {
 
 function makePill(item) {
   const pill = document.createElement('div');
-  pill.className   = 'drug-pill';
-  pill.id          = 'pill-' + item.id;
-  pill.draggable   = true;
+  pill.className = 'drug-pill';
+  pill.id = 'pill-' + item.id;
+  pill.draggable = true;
   pill.textContent = item.label;
+
+  // Lock child pills until parent is placed
+  if (item.parentId && !isParentPlaced(item)) {
+    pill.classList.add('locked');
+    pill.draggable = false;
+  }
 
   if (item.correctCats.size > 1) {
     const badge = document.createElement('span');
-    badge.className   = 'remaining-badge';
+    badge.className = 'remaining-badge';
     badge.textContent = item.correctCats.size;
     pill.appendChild(badge);
   }
 
-  pill.addEventListener('dragstart', () => draggingId = item.id);
-  pill.addEventListener('dragend',   () => draggingId = null);
+  pill.addEventListener('dragstart', () => {
+    if (pill.classList.contains('locked')) return;
+    draggingId = item.id;
+  });
+  pill.addEventListener('dragend', () => draggingId = null);
 
-  // Mobile: tap to select
   pill.addEventListener('click', () => {
     if (!isMobile()) return;
-    // Deselect if tapping the already-selected pill
+    if (pill.classList.contains('locked')) return;
     if (selectedPill === pill) {
       pill.classList.remove('tap-selected');
       selectedPill = null;
       return;
     }
-    // Deselect previous
     if (selectedPill) selectedPill.classList.remove('tap-selected');
     selectedPill = pill;
     draggingId = item.id;
     pill.classList.add('tap-selected');
-    // Highlight valid drop zones
     document.querySelectorAll('.sub-pills').forEach(z => z.classList.add('tap-target'));
   });
 
   return pill;
 }
 
+// ── Check if all parent placements are done for a child item ──
+function isParentPlaced(item) {
+  if (!item.parentId) return true;
+  // Parent is placed if it appears in any placed-pill in the DOM
+  return !!document.querySelector(`.placed-pill[data-item-id="${item.parentId}"]`);
+}
+
+// ── Reveal children after parent placed ───────────────────────
+function revealChildren(parentItem, catId) {
+  // For each nested type under this parent, inject a sub-zone into the placed pill's slot
+  if (!parentItem.children.length) return;
+
+  // Find the placed-pill element we just added
+  const placedEl = document.querySelector(`.placed-pill[data-item-id="${parentItem.id}"][data-cat="${catId}"]`);
+  if (!placedEl) return;
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'nested-zone-wrapper';
+
+  parentItem.children.forEach(child => {
+    const zoneId = `nested-${catId}-${child.typeId}-${parentItem.id}`;
+    const zoneDiv = document.createElement('div');
+    zoneDiv.innerHTML = `
+      <div class="nested-zone-label">${parentItem.label} — ${child.typeLabel}</div>
+      <div class="sub-pills"
+           id="${zoneId}"
+           data-cat="${catId}"
+           data-sub="${child.typeId}"
+           data-parent-item-id="${parentItem.id}"></div>
+    `;
+    wrapper.appendChild(zoneDiv);
+  });
+
+  placedEl.insertAdjacentElement('afterend', wrapper);
+  attachDropZoneListeners();
+
+  // Unlock matching child pills in the pool
+  allItems
+    .filter(i => i.parentId === parentItem.id && i.correctCats.has(catId))
+    .forEach(child => {
+      const pill = document.getElementById('pill-' + child.id);
+      if (pill) {
+        pill.classList.remove('locked');
+        pill.draggable = true;
+      }
+    });
+}
+
 // ── Drop logic ─────────────────────────────────────────────────
-function handleDrop(catId, subId) {
+function handleDrop(catId, subId, parentItemId) {
   if (!draggingId) return;
   const item = allItems.find(i => i.id === draggingId);
   if (!item) return;
   const pill = document.getElementById('pill-' + item.id);
   if (!pill) return;
 
-  const slotKey = `${catId}|${subId}`;
+  // Reject locked children
+  if (item.parentId && !isParentPlaced(item)) {
+    shake(pill); return;
+  }
+
+  // For child items, validate parentItemId matches
+  if (item.parentId && parentItemId && item.parentId !== parentItemId) {
+    shake(pill); return;
+  }
+
+  const slotKey = `${catId}|${subId}` + (parentItemId ? `|${parentItemId}` : '');
 
   if (!item.correctCats.has(catId) || item.type !== subId) {
-    pill.classList.remove('shake');
-    void pill.offsetWidth;
-    pill.classList.add('shake');
-    setTimeout(() => pill.classList.remove('shake'), 500);
-    // On mobile, keep pill selected so user can try a different zone
-    if (!isMobile()) {
-      selectedPill = null;
-      draggingId = null;
-    }
+    shake(pill);
+    if (!isMobile()) { selectedPill = null; draggingId = null; }
     return;
   }
 
   if (placedLog[item.id] && placedLog[item.id].has(slotKey)) return;
-
   if (!placedLog[item.id]) placedLog[item.id] = new Set();
   placedLog[item.id].add(slotKey);
 
+  // Create placed pill element
   const placed = document.createElement('span');
   placed.className = 'placed-pill';
+  placed.dataset.itemId = item.id;
+  placed.dataset.cat = catId;
   placed.innerHTML = item.hint
     ? `${item.label} <span class="hint">(${item.hint})</span>`
     : item.label;
-  document.getElementById(`pills-${catId}-${subId}`).appendChild(placed);
+
+  const zoneId = parentItemId
+    ? `nested-${catId}-${subId}-${parentItemId}`
+    : `pills-${catId}-${subId}`;
+  const zone = document.getElementById(zoneId);
+  if (zone) zone.appendChild(placed);
+
+  // If this is a parent with children, reveal nested zones
+  if (item.children.length) {
+    revealChildren(item, catId);
+  }
 
   const remaining = item.correctCats.size - placedLog[item.id].size;
   if (remaining <= 0) {
@@ -350,6 +463,13 @@ function handleDrop(catId, subId) {
   }
 
   checkComplete();
+}
+
+function shake(pill) {
+  pill.classList.remove('shake');
+  void pill.offsetWidth;
+  pill.classList.add('shake');
+  setTimeout(() => pill.classList.remove('shake'), 500);
 }
 
 // ── Completion check ───────────────────────────────────────────
@@ -382,8 +502,10 @@ function showError(msg) {
 
 // ── Init ───────────────────────────────────────────────────────
 async function initGame() {
-  placedLog  = {};
-  draggingId = null;
+  placedLog   = {};
+  unlockedLog = {};
+  draggingId  = null;
+  selectedPill = null;
   document.getElementById('reset-btn').style.display = 'none';
   document.getElementById('error-banner').style.display = 'none';
 
