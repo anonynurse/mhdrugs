@@ -10,8 +10,7 @@
 <body>
 
 <header>
-  <h1>// Drug Classifier</h1>
-  <p class="subtitle">Drag each item to its correct category &amp; section</p>
+  <h1>Drug Classifier</h1>
 </header>
 
 <div id="error-banner"></div>
@@ -32,14 +31,27 @@
 </div>
 
 <script>
-// ── Subsection config ──────────────────────────────────────────
-const SUBSECTIONS = [
-  { id: 'drugs',        label: 'Drugs',        key: 'drugs'        },
-  { id: 'target',       label: 'Target',       key: 'targets'      },
-  { id: 'side-effects', label: 'Side Effects', key: 'side_effects' },
-  { id: 'risks',        label: 'Risks',        key: 'risks'        },
-  { id: 'notes',        label: 'Notes',        key: 'notes'        },
-];
+// ── Subsection config — built dynamically from JSON keys ──────
+// SUBSECTIONS is populated at runtime by discoverSubsections()
+let SUBSECTIONS = [];
+
+function discoverSubsections(categories) {
+  const seen = new Set();
+  const result = [];
+  categories.forEach(cat => {
+    Object.keys(cat).forEach(key => {
+      if (key === 'id' || key === 'label') return;
+      if (seen.has(key)) return;
+      seen.add(key);
+      // Convert key to a CSS-safe id and a human-readable label
+      const id    = key.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const label = key.replace(/-/g, ' ').replace(/_/g, ' ')
+                       .replace(/\w/g, c => c.toUpperCase());
+      result.push({ id, label, key });
+    });
+  });
+  return result;
+}
 
 // ── State ──────────────────────────────────────────────────────
 let allItems   = [];
@@ -204,7 +216,7 @@ function handleDrop(catId, subId) {
 function checkComplete() {
   if (document.querySelectorAll('#pool .drug-pill').length === 0) {
     document.getElementById('pool').innerHTML =
-      '<div class="success-msg">// All correct —<br>system integrity verified</div>';
+      '<div class="success-msg">All correct</div>';
     document.getElementById('reset-btn').style.display = 'block';
     startWinAnimation();
   }
@@ -252,6 +264,7 @@ async function initGame() {
     return;
   }
 
+  SUBSECTIONS = discoverSubsections(categories);
   allItems = parseData(categories);
   buildGrid(categories);
   buildPool();
