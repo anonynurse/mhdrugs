@@ -5,6 +5,7 @@
     "drugs": ["Lithium"],
     "targets": [],
     "side_effects": [],
+    "risks": [],
     "notes": []
   },
   {
@@ -13,6 +14,7 @@
     "drugs": ["Sertraline", "Fluoxetine", "Citalopram"],
     "targets": ["Serotonin Transporter (SERT)"],
     "side_effects": ["Sexual dysfunction", "Anxiety", "Insomnia"],
+    "risks": [],
     "notes": ["Discontinuation syndrome"]
   },
   {
@@ -21,6 +23,7 @@
     "drugs": ["Venlafaxine", "Duloxetine"],
     "targets": [],
     "side_effects": [],
+    "risks": [],
     "notes": ["Discontinuation syndrome"]
   },
   {
@@ -29,6 +32,7 @@
     "drugs": ["Bupropion"],
     "targets": [],
     "side_effects": [],
+    "risks": [],
     "notes": []
   },
   {
@@ -41,6 +45,7 @@
     ],
     "targets": [],
     "side_effects": [],
+    "risks": [],
     "notes": []
   },
   {
@@ -49,6 +54,7 @@
     "drugs": [],
     "targets": [],
     "side_effects": [],
+    "risks": [],
     "notes": []
   },
   {
@@ -57,6 +63,7 @@
     "drugs": [],
     "targets": [],
     "side_effects": [],
+    "risks": [],
     "notes": []
   }
 ]
