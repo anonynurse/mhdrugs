@@ -4,7 +4,7 @@ body {
   min-height: 100vh;
   background: #020d14;
   font-family: 'Share Tech Mono', monospace;
-  padding: 24px;
+  padding: 20px;
   overflow-x: hidden;
 }
 
@@ -24,21 +24,21 @@ body::after {
 /* ── Header ── */
 header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 h1 {
   color: #7FDBFF;
-  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  font-size: clamp(0.95rem, 2vw, 1.4rem);
   letter-spacing: 0.25em;
   text-transform: uppercase;
   text-shadow: 0 0 18px #7FDBFF, 0 0 40px #7FDBFF88;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .subtitle {
   color: #4aa8c8;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -50,9 +50,9 @@ h1 {
   border: 1px solid #ff4444;
   color: #ff8888;
   border-radius: 4px;
-  padding: 12px 18px;
-  margin-bottom: 16px;
-  font-size: 0.72rem;
+  padding: 10px 16px;
+  margin-bottom: 14px;
+  font-size: 0.68rem;
   letter-spacing: 0.06em;
   line-height: 1.7;
   text-align: center;
@@ -61,127 +61,22 @@ h1 {
 /* ── Main two-column layout ── */
 .layout {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   align-items: flex-start;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
-/* ── Left: category grid ── */
-.grid-wrapper {
-  flex: 1 1 0;
-  min-width: 0;
-  overflow-y: auto;
-  max-height: calc(100vh - 120px);
-  padding-right: 4px;
-}
-
-/* hide scrollbar but keep functionality */
-.grid-wrapper::-webkit-scrollbar { width: 4px; }
-.grid-wrapper::-webkit-scrollbar-track { background: transparent; }
-.grid-wrapper::-webkit-scrollbar-thumb { background: #1a5a7a; border-radius: 2px; }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-.category {
-  border-radius: 4px;
-  padding: 12px 11px;
-  display: flex;
-  flex-direction: column;
-  background: rgba(2, 20, 35, 0.82);
-  border: 1px solid #1a5a7a;
-  box-shadow: 0 0 12px rgba(127,219,255,0.07), inset 0 0 20px rgba(0,0,0,0.4);
-  position: relative;
-}
-
-.category::before, .category::after {
-  content: '';
-  position: absolute;
-  width: 8px; height: 8px;
-  border-color: #7FDBFF;
-  border-style: solid;
-  opacity: 0.4;
-}
-.category::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-.category::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
-
-.cat-title {
-  font-size: 0.66rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #7FDBFF;
-  text-shadow: 0 0 8px #7FDBFF88;
-  padding-bottom: 8px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid #1a4a6a;
-  line-height: 1.5;
-}
-
-.subsection {
-  border-top: 1px solid #0d3348;
-  padding: 6px 0 4px;
-}
-.subsection:first-of-type { border-top: none; padding-top: 0; }
-
-.sub-label {
-  font-size: 0.54rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #2a7a9a;
-  margin-bottom: 4px;
-}
-
-.sub-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  min-height: 24px;
-  border: 1px dashed #0d3a52;
-  border-radius: 3px;
-  padding: 4px 5px;
-  transition: border-color 0.15s, background 0.15s;
-}
-
-.sub-pills.drag-over {
-  border-color: #7FDBFF88;
-  background: rgba(127,219,255,0.04);
-}
-
-/* ── Placed pills ── */
-.placed-pill {
-  background: transparent;
-  border: 1px solid #7FDBFF;
-  color: #7FDBFF;
-  text-shadow: 0 0 8px #7FDBFF;
-  box-shadow: 0 0 8px rgba(127,219,255,0.25);
-  border-radius: 2px;
-  padding: 2px 8px;
-  font-size: 0.6rem;
-  font-family: 'Share Tech Mono', monospace;
-  letter-spacing: 0.04em;
-  animation: popIn 0.3s ease;
-}
-
-.placed-pill .hint { color: #4ab8d8; font-size: 0.57rem; }
-
-@keyframes popIn {
-  0%   { transform: scale(0.6); opacity: 0; }
-  100% { transform: scale(1);   opacity: 1; }
-}
-
-/* ── Right: sticky pool ── */
+/* ── Left: sticky pool ── */
 .pool-wrapper {
-  flex: 0 0 260px;
+  flex: 0 0 220px;
   position: sticky;
-  top: 24px;
-  max-height: calc(100vh - 48px);
+  top: 20px;
+  max-height: calc(100vh - 40px);
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .pool {
@@ -189,23 +84,23 @@ h1 {
   border: 1px solid #1a5a7a;
   box-shadow: 0 0 12px rgba(127,219,255,0.07);
   border-radius: 4px;
-  padding: 14px 16px;
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   position: relative;
   overflow-y: auto;
   flex: 1;
 }
 
-.pool::-webkit-scrollbar { width: 4px; }
+.pool::-webkit-scrollbar { width: 3px; }
 .pool::-webkit-scrollbar-track { background: transparent; }
 .pool::-webkit-scrollbar-thumb { background: #1a5a7a; border-radius: 2px; }
 
 .pool::before, .pool::after {
   content: '';
   position: absolute;
-  width: 10px; height: 10px;
+  width: 8px; height: 8px;
   border-color: #7FDBFF;
   border-style: solid;
   opacity: 0.4;
@@ -215,19 +110,19 @@ h1 {
 .pool::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
 
 .pool-header {
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #7FDBFF;
   text-shadow: 0 0 8px #7FDBFF66;
   border-bottom: 1px solid #1a4a6a;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 
-.pool-section { display: flex; flex-direction: column; gap: 5px; }
+.pool-section { display: flex; flex-direction: column; gap: 4px; }
 
 .pool-section-label {
-  font-size: 0.56rem;
+  font-size: 0.53rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #2a7a9a;
@@ -235,20 +130,19 @@ h1 {
   padding-bottom: 3px;
 }
 
-.pool-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.pool-row { display: flex; flex-wrap: wrap; gap: 5px; }
 
 /* ── Draggable pills ── */
 .drug-pill {
   background: rgba(127,219,255,0.06);
   color: #a8e8ff;
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: 2px;
   cursor: grab;
-  font-size: 0.68rem;
-  letter-spacing: 0.05em;
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
   border: 1px solid #2a7a9a;
   user-select: none;
-  box-shadow: 0 0 6px rgba(127,219,255,0.08);
   transition: background 0.2s, box-shadow 0.2s, transform 0.1s, border-color 0.2s;
   font-family: 'Share Tech Mono', monospace;
   position: relative;
@@ -260,8 +154,8 @@ h1 {
   background: #7FDBFF;
   color: #020d14;
   border-radius: 50%;
-  width: 13px; height: 13px;
-  font-size: 0.48rem;
+  width: 12px; height: 12px;
+  font-size: 0.46rem;
   display: flex; align-items: center; justify-content: center;
   font-weight: bold;
   box-shadow: 0 0 5px #7FDBFF;
@@ -270,7 +164,7 @@ h1 {
 .drug-pill:hover {
   background: rgba(127,219,255,0.13);
   border-color: #7FDBFF;
-  box-shadow: 0 0 12px rgba(127,219,255,0.2);
+  box-shadow: 0 0 10px rgba(127,219,255,0.2);
   transform: translateY(-1px);
 }
 
@@ -286,31 +180,20 @@ h1 {
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-8px); }
-  40% { transform: translateX(8px); }
-  60% { transform: translateX(-5px); }
-  80% { transform: translateX(5px); }
-}
-
-.success-msg {
-  color: #7FDBFF;
-  font-size: 0.8rem;
-  text-shadow: 0 0 16px #7FDBFF;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 10px 0;
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(7px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
 }
 
 #reset-btn {
-  margin-top: 10px;
-  padding: 8px 0;
+  padding: 7px 0;
   width: 100%;
   background: transparent;
   color: #7FDBFF;
   border: 1px solid #7FDBFF;
   border-radius: 2px;
-  font-size: 0.7rem;
+  font-size: 0.66rem;
   cursor: pointer;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -324,5 +207,121 @@ h1 {
 
 #reset-btn:hover {
   background: rgba(127,219,255,0.1);
-  box-shadow: 0 0 20px rgba(127,219,255,0.3);
+  box-shadow: 0 0 18px rgba(127,219,255,0.3);
+}
+
+.success-msg {
+  color: #7FDBFF;
+  font-size: 0.75rem;
+  text-shadow: 0 0 14px #7FDBFF;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 8px 0;
+  line-height: 1.6;
+}
+
+/* ── Right: scrollable category grid ── */
+.grid-wrapper {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow-y: auto;
+  max-height: calc(100vh - 90px);
+  padding-right: 4px;
+}
+
+.grid-wrapper::-webkit-scrollbar { width: 3px; }
+.grid-wrapper::-webkit-scrollbar-track { background: transparent; }
+.grid-wrapper::-webkit-scrollbar-thumb { background: #1a5a7a; border-radius: 2px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.category {
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(2, 20, 35, 0.82);
+  border: 1px solid #1a5a7a;
+  box-shadow: 0 0 12px rgba(127,219,255,0.07), inset 0 0 20px rgba(0,0,0,0.4);
+  position: relative;
+}
+
+.category::before, .category::after {
+  content: '';
+  position: absolute;
+  width: 7px; height: 7px;
+  border-color: #7FDBFF;
+  border-style: solid;
+  opacity: 0.35;
+}
+.category::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.category::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+.cat-title {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7FDBFF;
+  text-shadow: 0 0 8px #7FDBFF88;
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+  border-bottom: 1px solid #1a4a6a;
+  line-height: 1.4;
+}
+
+.subsection {
+  border-top: 1px solid #0d3348;
+  padding: 5px 0 3px;
+}
+.subsection:first-of-type { border-top: none; padding-top: 0; }
+
+.sub-label {
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #2a7a9a;
+  margin-bottom: 3px;
+}
+
+.sub-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  min-height: 20px;
+  border: 1px dashed #0d3a52;
+  border-radius: 2px;
+  padding: 3px 4px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.sub-pills.drag-over {
+  border-color: #7FDBFF88;
+  background: rgba(127,219,255,0.04);
+}
+
+/* ── Placed pills ── */
+.placed-pill {
+  background: transparent;
+  border: 1px solid #7FDBFF;
+  color: #7FDBFF;
+  text-shadow: 0 0 6px #7FDBFF;
+  box-shadow: 0 0 6px rgba(127,219,255,0.2);
+  border-radius: 2px;
+  padding: 2px 7px;
+  font-size: 0.57rem;
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 0.03em;
+  animation: popIn 0.3s ease;
+}
+
+.placed-pill .hint { color: #4ab8d8; font-size: 0.53rem; }
+
+@keyframes popIn {
+  0%   { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
 }
