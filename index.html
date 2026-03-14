@@ -10,8 +10,7 @@
 <body>
 
 <header>
-  <h1>// Drug Classifier</h1>
-  <p class="subtitle">Drag each item to its correct category &amp; section</p>
+  <h1>Drug Classifier</h1>
 </header>
 
 <div id="error-banner"></div>
@@ -204,7 +203,7 @@ function handleDrop(catId, subId) {
 function checkComplete() {
   if (document.querySelectorAll('#pool .drug-pill').length === 0) {
     document.getElementById('pool').innerHTML =
-      '<div class="success-msg">// All correct —<br>system integrity verified</div>';
+      '<div class="success-msg">All correct</div>';
     document.getElementById('reset-btn').style.display = 'block';
   }
 }
