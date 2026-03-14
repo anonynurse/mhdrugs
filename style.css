@@ -81,7 +81,8 @@ h1 {
 
 .pool {
   background: rgba(2, 20, 35, 0.82);
-  border: 1px solid #1a5a7a;
+  border: none;
+  outline: 1px solid #1a5a7a;
   box-shadow: 0 0 12px rgba(127,219,255,0.07);
   border-radius: 4px;
   padding: 12px 14px;
