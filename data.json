@@ -6,6 +6,8 @@
     "mechanism": ["modulates neurotransmission"],
     "side_effects": ["Weight gain", "fine motor tremors*", "polyuria*", "thirst", "mental slowness", "poor concentration and memory"],
     "risks": ["narrow therapeutic index 0.6 - 1.2"],
+    "signs of toxicity - early": ["diarrhea", "lethargy", "slurred speech", "muscle weakness"],
+    "signs of toxicity - late": ["polyuria++", "confusion", "ataxia", "seizures", "hypotension", "coma"],
     "notes": ["acts like Na"]
   },
   {
