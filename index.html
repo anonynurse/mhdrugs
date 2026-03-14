@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css">
   <style>
     /* ── Force landscape on mobile ── */
-    @media screen and (max-width: 768px) and (orientation: portrait) {
+    @media screen and (pointer: coarse) and (orientation: portrait) {
       #rotate-msg { display: flex !important; }
       body > *:not(#rotate-msg) { display: none !important; }
     }
@@ -46,8 +46,8 @@
       color: #4aa8c8;
     }
 
-    /* ── Mobile tap styles ── */
-    @media screen and (max-width: 768px) {
+    /* ── Touch device tap styles ── */
+    @media screen and (pointer: coarse) {
       .drug-pill.tap-selected {
         background: rgba(127,219,255,0.3) !important;
         border-color: #7FDBFF !important;
@@ -158,7 +158,7 @@ let unlockedLog  = {};   // parentItemId -> Set of "catId|subId" where children 
 let draggingId   = null;
 let selectedPill = null;
 
-const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+const isMobile = () => window.matchMedia('(pointer: coarse)').matches;
 
 // ── Parse JSON ─────────────────────────────────────────────────
 // Entries can be:
