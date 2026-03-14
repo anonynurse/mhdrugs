@@ -3,10 +3,10 @@
     "id": "mood-stabilizer",
     "label": "Mood Stabilizer",
     "drugs": ["Lithium"],
-    "targets": [],
-    "side_effects": [],
-    "risks": [],
-    "notes": []
+    "mechanism": ["modulates neurotransmission"],
+    "side_effects": ["Weight gain", "fine motor tremors*", "polyuria*", "thirst", "mental slowness", "poor concentration and memory"],
+    "risks": ["narrow therapeutic index 0.6 - 1.2"],
+    "notes": ["acts like Na"]
   },
   {
     "id": "ssri",
