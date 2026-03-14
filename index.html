@@ -9,14 +9,25 @@
 </head>
 <body>
 
-<div class="content">
-  <h1>// Drug Classifier</h1>
-  <p class="subtitle">Drag each item to its correct category &amp; section</p>
+<header>
+  <h1>Drug Classifier</h1>
+</header>
 
-  <div id="error-banner"></div>
-  <div class="grid" id="grid"></div>
-  <div class="pool" id="pool"></div>
-  <button id="reset-btn" onclick="initGame()">↺ Reinitialise</button>
+<div id="error-banner"></div>
+
+<div class="layout">
+
+  <!-- Left: scrollable category grid -->
+  <div class="grid-wrapper">
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <!-- Right: sticky pool -->
+  <div class="pool-wrapper">
+    <div class="pool" id="pool"></div>
+    <button id="reset-btn" onclick="initGame()">↺ Reinitialise</button>
+  </div>
+
 </div>
 
 <script>
@@ -35,13 +46,12 @@ let draggingId = null;
 
 // ── Parse JSON into flat items ─────────────────────────────────
 function parseData(categories) {
-  const itemMap = {}; // key: "label|type" -> item
+  const itemMap = {};
 
   categories.forEach(cat => {
     SUBSECTIONS.forEach(sub => {
       const entries = cat[sub.key] || [];
       entries.forEach(raw => {
-        // Split hint out of "Label (hint text)" pattern
         const match = raw.match(/^(.+?)\s*\(([^)]+)\)\s*$/);
         const label = match ? match[1].trim() : raw.trim();
         const hint  = match ? match[2].trim() : null;
@@ -102,7 +112,7 @@ function buildGrid(categories) {
 // ── Build pool ─────────────────────────────────────────────────
 function buildPool() {
   const pool = document.getElementById('pool');
-  pool.innerHTML = '';
+  pool.innerHTML = '<div class="pool-header">[ Item Pool ]</div>';
 
   SUBSECTIONS.forEach(sub => {
     const group = shuffle(allItems.filter(i => i.type === sub.id));
@@ -110,7 +120,7 @@ function buildPool() {
 
     const section = document.createElement('div');
     section.className = 'pool-section';
-    section.innerHTML = `<div class="pool-section-label">[ ${sub.label} ]</div>`;
+    section.innerHTML = `<div class="pool-section-label">${sub.label}</div>`;
 
     const row = document.createElement('div');
     row.className = 'pool-row';
@@ -185,8 +195,8 @@ function handleDrop(catId, subId) {
 function checkComplete() {
   if (document.querySelectorAll('#pool .drug-pill').length === 0) {
     document.getElementById('pool').innerHTML =
-      '<div class="success-msg">// All correct — system integrity verified</div>';
-    document.getElementById('reset-btn').style.display = 'inline-block';
+      '<div class="success-msg">// All correct —<br>system integrity verified</div>';
+    document.getElementById('reset-btn').style.display = 'block';
   }
 }
 
@@ -214,8 +224,8 @@ async function initGame() {
   } catch (err) {
     showError(
       `⚠ Could not load <code>data.json</code>.<br>
-      If opening directly from the filesystem, browsers block local file fetches.<br>
-      Run a local server instead — e.g: <code>npx serve .</code> or <code>python3 -m http.server</code>`
+      Browsers block local file fetches — run a server instead:<br>
+      <code>npx serve .</code> &nbsp;or&nbsp; <code>python3 -m http.server</code>`
     );
     return;
   }
