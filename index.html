@@ -34,12 +34,24 @@
 // ── Pool grouping config ───────────────────────────────────────
 // Keys listed here get merged into one pool section under a shared label.
 // The pill still knows its exact target type so it lands in the right slot.
-// Add more groups here as needed — anything not listed appears individually.
 const POOL_GROUPS = [
   {
     poolLabel: 'Signs Of Toxicity',
     keys: ['signs of toxicity - early', 'signs of toxicity - late'],
   },
+];
+
+// ── Pool section order ─────────────────────────────────────────
+// Sections appear in this order in the pool. Any key not listed here
+// (or its group label) will appear at the end in discovery order.
+const POOL_SECTION_ORDER = [
+  'Drugs',
+  'Targets',
+  'Mechanism',
+  'Side Effects',
+  'Risks',
+  'Signs Of Toxicity',
+  'Notes',
 ];
 
 // ── Key helpers ────────────────────────────────────────────────
@@ -156,8 +168,14 @@ function buildPool() {
     sectionMap.get(item.poolLabel).push(item);
   });
 
-  // Shuffle both the section order and items within each section
-  const sections = shuffle([...sectionMap.entries()]);
+  // Sort sections by POOL_SECTION_ORDER, append any unknown ones at end
+  const sections = [...sectionMap.entries()].sort(([a], [b]) => {
+    const ai = POOL_SECTION_ORDER.indexOf(a);
+    const bi = POOL_SECTION_ORDER.indexOf(b);
+    const an = ai === -1 ? Infinity : ai;
+    const bn = bi === -1 ? Infinity : bi;
+    return an - bn;
+  });
 
   sections.forEach(([label, items]) => {
     const section = document.createElement('div');
