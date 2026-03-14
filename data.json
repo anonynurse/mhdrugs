@@ -12,7 +12,7 @@
     "id": "ssri",
     "label": "SSRI",
     "drugs": ["Sertraline", "Fluoxetine", "Citalopram"],
-    "targets": ["Serotonin Transporter (SERT)"],
+    "targets": ["Serotonin Transporter [SERT]"],
     "side_effects": ["Sexual dysfunction", "Anxiety", "Insomnia"],
     "risks": [],
     "notes": ["Discontinuation syndrome"]
