@@ -116,6 +116,13 @@ function buildPool() {
   const pool = document.getElementById('pool');
   pool.innerHTML = '<div class="pool-header">[ Item Pool ]</div>';
 
+  // Absorb dragover on the pool itself so the browser doesn't
+  // apply its default drag-highlight border to the container.
+  // We use preventDefault (not stopPropagation) so drop zones
+  // in the grid still work fine.
+  pool.addEventListener('dragover',  e => e.preventDefault());
+  pool.addEventListener('dragenter', e => e.preventDefault());
+
   SUBSECTIONS.forEach(sub => {
     const group = shuffle(allItems.filter(i => i.type === sub.id));
     if (group.length === 0) return;
@@ -235,11 +242,6 @@ async function initGame() {
   allItems = parseData(categories);
   buildGrid(categories);
   buildPool();
-
-  // Stop pool container from receiving dragover so browser never highlights it
-  const poolEl = document.getElementById('pool');
-  poolEl.addEventListener('dragover',  e => e.stopPropagation());
-  poolEl.addEventListener('dragenter', e => e.stopPropagation());
 }
 
 initGame();
