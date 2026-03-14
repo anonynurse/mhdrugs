@@ -356,10 +356,15 @@ function makePill(item) {
   return pill;
 }
 
-// ── Check if all parent placements are done for a child item ──
+// ── Check if parent is placed in a specific category ──────────
+function isParentPlacedInCat(item, catId) {
+  if (!item.parentId) return true;
+  return !!document.querySelector(`.placed-pill[data-item-id="${item.parentId}"][data-cat="${catId}"]`);
+}
+
+// ── Check if parent placed in any category (for unlocking pill) ──
 function isParentPlaced(item) {
   if (!item.parentId) return true;
-  // Parent is placed if it appears in any placed-pill in the DOM
   return !!document.querySelector(`.placed-pill[data-item-id="${item.parentId}"]`);
 }
 
@@ -412,19 +417,25 @@ function handleDrop(catId, subId, parentItemId) {
   const pill = document.getElementById('pill-' + item.id);
   if (!pill) return;
 
-  // Reject locked children
-  if (item.parentId && !isParentPlaced(item)) {
+  // First check if cat+type is correct — do this before any other rejection
+  // so a correct drop never triggers the shake
+  const isCorrectSlot = item.correctCats.has(catId) && item.type === subId;
+
+  // Reject locked children (parent not yet placed in this category)
+  if (item.parentId && !isParentPlacedInCat(item, catId)) {
     shake(pill); return;
   }
 
-  // For child items, validate parentItemId matches
-  if (item.parentId && parentItemId && item.parentId !== parentItemId) {
+  // For child items dropped into a nested zone, make sure the zone's
+  // parent matches this item's parent — but only reject if the slot is wrong too,
+  // so a correct drop never shakes
+  if (item.parentId && parentItemId && item.parentId !== parentItemId && !isCorrectSlot) {
     shake(pill); return;
   }
 
   const slotKey = `${catId}|${subId}` + (parentItemId ? `|${parentItemId}` : '');
 
-  if (!item.correctCats.has(catId) || item.type !== subId) {
+  if (!isCorrectSlot) {
     shake(pill);
     if (!isMobile()) { selectedPill = null; draggingId = null; }
     return;
