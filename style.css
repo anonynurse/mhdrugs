@@ -127,10 +127,10 @@ h1 {
 .drug-pill {
   background: rgba(127,219,255,0.06);
   color: #d0f4ff;
-  padding: 4px 10px;
+  padding: 3px 9px;
   border-radius: 2px;
   cursor: grab;
-  font-size: 0.64rem;
+  font-size: 0.61rem;
   letter-spacing: 0.04em;
   border: 1px solid #2a7a9a;
   user-select: none;
@@ -282,6 +282,7 @@ h1 {
 .sub-pills {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 2px;
   min-height: 28px;
   border: 1px dashed #0d3a52;
