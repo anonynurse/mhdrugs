@@ -35,22 +35,20 @@
 // SUBSECTIONS is populated at runtime by discoverSubsections()
 let SUBSECTIONS = [];
 
-function discoverSubsections(categories) {
-  const seen = new Set();
-  const result = [];
-  categories.forEach(cat => {
-    Object.keys(cat).forEach(key => {
-      if (key === 'id' || key === 'label') return;
-      if (seen.has(key)) return;
-      seen.add(key);
-      // Convert key to a CSS-safe id and a human-readable label
-      const id    = key.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-      const label = key.replace(/-/g, ' ').replace(/_/g, ' ')
-                       .replace(/\w/g, c => c.toUpperCase());
-      result.push({ id, label, key });
-    });
-  });
-  return result;
+function keyToSub(key) {
+  const id    = key.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  const label = key.replace(/[-_]/g, ' ')
+                   .split(' ')
+                   .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+                   .join(' ');
+  return { id, label, key };
+}
+
+// Returns subsections for a single category (only its own keys)
+function subsectionsFor(cat) {
+  return Object.keys(cat)
+    .filter(k => k !== 'id' && k !== 'label')
+    .map(keyToSub);
 }
 
 // ── State ──────────────────────────────────────────────────────
@@ -63,7 +61,7 @@ function parseData(categories) {
   const itemMap = {};
 
   categories.forEach(cat => {
-    SUBSECTIONS.forEach(sub => {
+    subsectionsFor(cat).forEach(sub => {
       const entries = cat[sub.key] || [];
       entries.forEach(raw => {
         const match = raw.match(/^(.+?)\s*\(([^)]+)\)\s*$/);
@@ -77,6 +75,7 @@ function parseData(categories) {
             label,
             hint,
             type:        sub.id,
+            typeLabel:   sub.label,
             correctCats: new Set(),
           };
         }
@@ -98,7 +97,7 @@ function buildGrid(categories) {
     box.className = 'category';
     box.id = 'cat-' + cat.id;
 
-    const subsHtml = SUBSECTIONS.map(sub => `
+    const subsHtml = subsectionsFor(cat).map(sub => `
       <div class="subsection">
         <div class="sub-label">${sub.label}</div>
         <div class="sub-pills"
@@ -135,7 +134,17 @@ function buildPool() {
   pool.addEventListener('dragover',  e => e.preventDefault());
   pool.addEventListener('dragenter', e => e.preventDefault());
 
-  SUBSECTIONS.forEach(sub => {
+  // Collect all unique subsection types across all items for pool grouping
+  const seenTypes = new Set();
+  const poolSubs = [];
+  allItems.forEach(item => {
+    if (!seenTypes.has(item.type)) {
+      seenTypes.add(item.type);
+      poolSubs.push({ id: item.type, label: item.typeLabel });
+    }
+  });
+
+  poolSubs.forEach(sub => {
     const group = shuffle(allItems.filter(i => i.type === sub.id));
     if (group.length === 0) return;
 
@@ -264,7 +273,6 @@ async function initGame() {
     return;
   }
 
-  SUBSECTIONS = discoverSubsections(categories);
   allItems = parseData(categories);
   buildGrid(categories);
   buildPool();
