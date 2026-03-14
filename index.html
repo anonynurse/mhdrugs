@@ -10,22 +10,23 @@
 <body>
 
 <header>
-  <h1>Drug Classifier</h1>
+  <h1>// Drug Classifier</h1>
+  <p class="subtitle">Drag each item to its correct category &amp; section</p>
 </header>
 
 <div id="error-banner"></div>
 
 <div class="layout">
 
-  <!-- Left: scrollable category grid -->
-  <div class="grid-wrapper">
-    <div class="grid" id="grid"></div>
-  </div>
-
-  <!-- Right: sticky pool -->
+  <!-- Left: sticky pool -->
   <div class="pool-wrapper">
     <div class="pool" id="pool"></div>
     <button id="reset-btn" onclick="initGame()">↺ Reinitialise</button>
+  </div>
+
+  <!-- Right: scrollable category grid -->
+  <div class="grid-wrapper">
+    <div class="grid" id="grid"></div>
   </div>
 
 </div>
@@ -36,12 +37,13 @@ const SUBSECTIONS = [
   { id: 'drugs',        label: 'Drugs',        key: 'drugs'        },
   { id: 'target',       label: 'Target',       key: 'targets'      },
   { id: 'side-effects', label: 'Side Effects', key: 'side_effects' },
+  { id: 'risks',        label: 'Risks',        key: 'risks'        },
   { id: 'notes',        label: 'Notes',        key: 'notes'        },
 ];
 
 // ── State ──────────────────────────────────────────────────────
-let allItems   = [];  // { id, label, hint, type, correctCats: Set }
-let placedLog  = {};  // itemId -> Set of "catId|subId" strings already placed
+let allItems   = [];
+let placedLog  = {};
 let draggingId = null;
 
 // ── Parse JSON into flat items ─────────────────────────────────
