@@ -127,10 +127,10 @@ h1 {
 .drug-pill {
   background: rgba(127,219,255,0.06);
   color: #d0f4ff;
-  padding: 3px 9px;
+  padding: 2px 9px;
   border-radius: 2px;
   cursor: grab;
-  font-size: 0.55rem;
+  font-size: 0.5rem;
   letter-spacing: 0.04em;
   border: 1px solid #2a7a9a;
   user-select: none;
