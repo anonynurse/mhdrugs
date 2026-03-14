@@ -205,7 +205,23 @@ function checkComplete() {
     document.getElementById('pool').innerHTML =
       '<div class="success-msg">All correct</div>';
     document.getElementById('reset-btn').style.display = 'block';
+    startWinAnimation();
   }
+}
+
+// ── Win animation ──────────────────────────────────────────────
+function startWinAnimation() {
+  const cats = document.querySelectorAll('.category');
+  const colors = ['#7FDBFF','#a78bfa','#34d399','#f472b6','#fbbf24','#60a5fa','#f87171'];
+  cats.forEach((cat, i) => {
+    const color = colors[i % colors.length];
+    const delay = (Math.random() * 0.6).toFixed(2);
+    const duration = (0.8 + Math.random() * 0.7).toFixed(2);
+    cat.style.setProperty('--flicker-color', color);
+    cat.style.animationDelay = delay + 's';
+    cat.style.animationDuration = duration + 's';
+    cat.classList.add('win-flicker');
+  });
 }
 
 // ── Helpers ────────────────────────────────────────────────────
