@@ -235,6 +235,11 @@ async function initGame() {
   allItems = parseData(categories);
   buildGrid(categories);
   buildPool();
+
+  // Stop pool container from receiving dragover so browser never highlights it
+  const poolEl = document.getElementById('pool');
+  poolEl.addEventListener('dragover',  e => e.stopPropagation());
+  poolEl.addEventListener('dragenter', e => e.stopPropagation());
 }
 
 initGame();
