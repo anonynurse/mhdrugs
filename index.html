@@ -2,12 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Drug Classifier</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Force landscape on mobile ── */
+    @media screen and (max-width: 768px) and (orientation: portrait) {
+      #rotate-msg {
+        display: flex !important;
+      }
+      body > *:not(#rotate-msg) {
+        display: none !important;
+      }
+    }
+
+    #rotate-msg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #020d14;
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      color: #7FDBFF;
+      font-family: 'Share Tech Mono', monospace;
+      text-align: center;
+      padding: 30px;
+    }
+
+    #rotate-msg .rotate-icon {
+      font-size: 3rem;
+      animation: rotateHint 2s ease-in-out infinite;
+    }
+
+    @keyframes rotateHint {
+      0%, 100% { transform: rotate(0deg); }
+      50%       { transform: rotate(90deg); }
+    }
+
+    #rotate-msg p {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #4aa8c8;
+    }
+
+    /* ── Mobile tap styles ── */
+    @media screen and (max-width: 768px) {
+      .drug-pill.tap-selected {
+        background: rgba(127,219,255,0.3) !important;
+        border-color: #7FDBFF !important;
+        box-shadow: 0 0 16px rgba(127,219,255,0.6) !important;
+        transform: scale(1.08);
+      }
+
+      .sub-pills.tap-target {
+        border-color: #7FDBFF88 !important;
+        background: rgba(127,219,255,0.06) !important;
+      }
+    }
+  </style>
 </head>
 <body>
+
+<div id="rotate-msg">
+  <div class="rotate-icon">&#x21BA;</div>
+  <p>Please rotate your device to landscape mode</p>
+</div>
 
 <header>
   <h1>Drug Classifier</h1>
@@ -82,7 +146,10 @@ function subsectionsFor(cat) {
 // ── State ──────────────────────────────────────────────────────
 let allItems   = [];
 let placedLog  = {};
-let draggingId = null;
+let draggingId   = null;
+let selectedPill = null; // mobile tap state
+
+const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
 
 // ── Parse JSON into flat items ─────────────────────────────────
 function parseData(categories) {
@@ -150,6 +217,16 @@ function buildGrid(categories) {
       zone.classList.remove('drag-over');
       handleDrop(zone.dataset.cat, zone.dataset.sub);
     });
+
+    // Mobile: tap zone to drop selected pill
+    zone.addEventListener('click', () => {
+      if (!isMobile() || !selectedPill) return;
+      // Clear all highlights
+      document.querySelectorAll('.sub-pills').forEach(z => z.classList.remove('tap-target'));
+      selectedPill.classList.remove('tap-selected');
+      handleDrop(zone.dataset.cat, zone.dataset.sub);
+      selectedPill = null;
+    });
   });
 }
 
@@ -207,6 +284,25 @@ function makePill(item) {
 
   pill.addEventListener('dragstart', () => draggingId = item.id);
   pill.addEventListener('dragend',   () => draggingId = null);
+
+  // Mobile: tap to select
+  pill.addEventListener('click', () => {
+    if (!isMobile()) return;
+    // Deselect if tapping the already-selected pill
+    if (selectedPill === pill) {
+      pill.classList.remove('tap-selected');
+      selectedPill = null;
+      return;
+    }
+    // Deselect previous
+    if (selectedPill) selectedPill.classList.remove('tap-selected');
+    selectedPill = pill;
+    draggingId = item.id;
+    pill.classList.add('tap-selected');
+    // Highlight valid drop zones
+    document.querySelectorAll('.sub-pills').forEach(z => z.classList.add('tap-target'));
+  });
+
   return pill;
 }
 
@@ -225,6 +321,11 @@ function handleDrop(catId, subId) {
     void pill.offsetWidth;
     pill.classList.add('shake');
     setTimeout(() => pill.classList.remove('shake'), 500);
+    // On mobile, keep pill selected so user can try a different zone
+    if (!isMobile()) {
+      selectedPill = null;
+      draggingId = null;
+    }
     return;
   }
 
