@@ -263,15 +263,17 @@ function attachDropZoneListeners() {
     if (zone.dataset.listenersAttached) return;
     zone.dataset.listenersAttached = 'true';
 
-    zone.addEventListener('dragover',  e => { e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragover',  e => { e.preventDefault(); e.stopPropagation(); zone.classList.add('drag-over'); });
     zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
     zone.addEventListener('drop', e => {
       e.preventDefault();
+      e.stopPropagation();
       zone.classList.remove('drag-over');
       handleDrop(zone.dataset.cat, zone.dataset.sub, zone.dataset.parentItemId || null);
     });
 
-    zone.addEventListener('click', () => {
+    zone.addEventListener('click', e => {
+      e.stopPropagation();
       if (!isMobile() || !selectedPill) return;
       document.querySelectorAll('.sub-pills').forEach(z => z.classList.remove('tap-target'));
       selectedPill.classList.remove('tap-selected');
