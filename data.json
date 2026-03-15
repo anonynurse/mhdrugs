@@ -22,11 +22,11 @@
     "risks": [
       {
         "label": "Discontinuation Syndrome",
-        "signs": ["3-7 day onset", "flu like", "insomnia", "naus/vom/dia", "sensory disturbances (electric shock sensation)", "hyper arousal"]
+        "signs": ["3-7 day onset", "flu like", "insomnia", "naus/vom/dia", "sensory disturbances (electric shock sensation)", "hyper arousal", "taper slowly*"]
       },
       {
         "label": "Serotonin Syndrome",
-        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea", "taper slowly*"]
+        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea"]
       }
     ],
     "notes": ["first line antidepressant"]
@@ -42,11 +42,11 @@
     "risks": [
       {
         "label": "Discontinuation Syndrome",
-        "signs": ["3-7 day onset", "flu like", "insomnia", "naus/vom/dia", "sensory disturbances (electric shock sensation)", "hyper arousal"]
+        "signs": ["3-7 day onset", "flu like", "insomnia", "naus/vom/dia", "sensory disturbances (electric shock sensation)", "hyper arousal", "taper slowly*"]
       },
       {
         "label": "Serotonin Syndrome",
-        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea", "taper slowly*"]
+        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea"]
       }
     ],
     "notes": []
