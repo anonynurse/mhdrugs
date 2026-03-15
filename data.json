@@ -38,7 +38,7 @@
     "risks": [
       {
         "label": "Discontinuation Syndrome",
-        "signs": ["3-7 day onset", "flu like", "insomnia", "naus vom dia", "electric shock sensation", "hyper arousal"]
+        "signs": ["3-7 day onset", "flu like", "insomnia", "naus/vom/dia", "electric shock sensation", "hyper arousal"]
       }
     ],
     "notes": []
