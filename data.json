@@ -9,17 +9,14 @@
     "risks": ["narrow therapeutic index 0.6 - 1.2", "renal damage"],
     "signs of toxicity - early": ["diarrhea", "lethargy", "slurred speech", "muscle weakness"],
     "signs of toxicity - late": ["polyuria++", "confusion", "ataxia", "seizures", "hypotension", "coma"],
-    "notes": ["mimics sodium","toxicity ≥ 1.5 mmol/L", "monitor levels frequently until stabilized, then q3month", "alters electrical conductivity in the body"  ]
+    "notes": ["mimics sodium", "toxicity ≥ 1.5 mmol/L", "monitor levels frequently until stabilized, then q3month", "alters electrical conductivity in the body"]
   },
   {
     "id": "ssri",
     "label": "SSRI",
     "drugs": ["Sertraline", "Fluoxetine", "Citalopram"],
-    "targets": ["Serotonin Transporter [SERT]"],
     "targets": ["Serotonin Transporter (SERT)"],
     "side_effects": ["Sexual dysfunction", "Anxiety", "Insomnia"],
-    "risks": [],
-    "notes": ["Discontinuation syndrome"]
     "risks": [
       {
         "label": "Discontinuation Syndrome",
@@ -38,8 +35,6 @@
     "drugs": ["Venlafaxine", "Duloxetine"],
     "targets": [],
     "side_effects": [],
-    "risks": [],
-    "notes": ["Discontinuation syndrome"]
     "risks": [
       {
         "label": "Discontinuation Syndrome",
