@@ -71,7 +71,7 @@
       "Lamotrigine (used for depressive phase)",
       "valproic acid"
     ],
-    "mechanism": ["anti-kindling", "enhance gaba, inhibit gluta", "restablish balanace between excite and inhib paths"]
+    "mechanism": ["anti-kindling", "enhance gaba, inhibit gluta", "restablish balance between excite and inhib paths"]
   },
   {
     "id": "tca",
