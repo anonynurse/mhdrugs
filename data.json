@@ -16,8 +16,20 @@
     "label": "SSRI",
     "drugs": ["Sertraline", "Fluoxetine", "Citalopram"],
     "targets": ["Serotonin Transporter [SERT]"],
+    "targets": ["Serotonin Transporter (SERT)"],
     "side_effects": ["Sexual dysfunction", "Anxiety", "Insomnia"],
-    "risks": ["Discontinuation syndrome"],
+    "risks": [],
+    "notes": ["Discontinuation syndrome"]
+    "risks": [
+      {
+        "label": "Discontinuation Syndrome",
+        "signs": ["3-7 day onset", "flu like", "insomnia", "naus vom dia", "electric shock sensation", "hyper arousal"]
+      },
+      {
+        "label": "Serotonin Syndrome",
+        "signs": ["Delirium", "Agitation", "Fever, diaphoresis", "Ocular clonus", "Tachycardia, HTN", "Myoclonus seizure", "Hyperreflexia", "Diarrhea"]
+      }
+    ],
     "notes": []
   },
   {
@@ -26,7 +38,14 @@
     "drugs": ["Venlafaxine", "Duloxetine"],
     "targets": [],
     "side_effects": [],
-    "risks": ["Discontinuation syndrome"],
+    "risks": [],
+    "notes": ["Discontinuation syndrome"]
+    "risks": [
+      {
+        "label": "Discontinuation Syndrome",
+        "signs": ["3-7 day onset", "flu like", "insomnia", "naus vom dia", "electric shock sensation", "hyper arousal"]
+      }
+    ],
     "notes": []
   },
   {
