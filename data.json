@@ -33,7 +33,7 @@
     "id": "snri",
     "label": "SNRI",
     "drugs": ["Venlafaxine", "Duloxetine"],
-    "targets": [],
+    "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)"],
     "side_effects": [],
     "risks": [
       {
