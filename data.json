@@ -4,28 +4,20 @@
     "label": "Mood Stabilizer",
     "drugs": ["Lithium"],
     "mechanism": ["modulates neurotransmission"],
+    "onset": ["10 - 21 days"],
     "side_effects": ["Weight gain", "fine motor tremors*", "polyuria*", "thirst", "mental slowness", "poor concentration and memory"],
-    "risks": ["narrow therapeutic index 0.6 - 1.2"],
+    "risks": ["narrow therapeutic index 0.6 - 1.2", "renal damage"],
     "signs of toxicity - early": ["diarrhea", "lethargy", "slurred speech", "muscle weakness"],
     "signs of toxicity - late": ["polyuria++", "confusion", "ataxia", "seizures", "hypotension", "coma"],
-    "notes": ["acts like Na"]
+    "notes": ["mimics sodium","toxicity ≥ 1.5 mmol/L", "monitor levels frequently until stabilized, then q3month", "alters electrical conductivity in the body"  ]
   },
   {
     "id": "ssri",
     "label": "SSRI",
     "drugs": ["Sertraline", "Fluoxetine", "Citalopram"],
-    "targets": ["Serotonin Transporter (SERT)"],
+    "targets": ["Serotonin Transporter [SERT]"],
     "side_effects": ["Sexual dysfunction", "Anxiety", "Insomnia"],
-    "risks": [
-      {
-        "label": "Discontinuation Syndrome",
-        "signs": ["3-7 day onset", "flu like", "insomnia", "naus vom dia", "electric shock sensation", "hyper arousal"]
-      },
-      {
-        "label": "Serotonin Syndrome",
-        "signs": ["Delirium", "Agitation", "Fever, diaphoresis", "Ocular clonus", "Tachycardia, HTN", "Myoclonus seizure", "Hyperreflexia", "Diarrhea"]
-      }
-    ],
+    "risks": ["Discontinuation syndrome"],
     "notes": []
   },
   {
@@ -34,12 +26,7 @@
     "drugs": ["Venlafaxine", "Duloxetine"],
     "targets": [],
     "side_effects": [],
-    "risks": [
-      {
-        "label": "Discontinuation Syndrome",
-        "signs": ["3-7 day onset", "flu like", "insomnia", "naus vom dia", "electric shock sensation", "hyper arousal"]
-      }
-    ],
+    "risks": ["Discontinuation syndrome"],
     "notes": []
   },
   {
@@ -59,6 +46,7 @@
       "Divalproex Sodium (used for manic phase)",
       "Lamotrigine (used for depressive phase)"
     ],
+    "mechanism": ["anti-kindling", "enhance gaba, inhibit gluta", "restablish balanace between excite and inhib paths"],
     "targets": [],
     "side_effects": [],
     "risks": [],
