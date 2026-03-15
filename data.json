@@ -16,15 +16,15 @@
     "label": "SSRI",
     "drugs": ["Sertraline", "Fluoxetine", "Citalopram"],
     "targets": ["Serotonin Transporter (SERT)"],
-    "side_effects": ["Sexual dysfunction", "Anxiety", "Insomnia"],
+    "side_effects": ["sexual dysfunction", "anxiety", "insomnia"],
     "risks": [
       {
         "label": "Discontinuation Syndrome",
-        "signs": ["3-7 day onset", "flu like", "insomnia", "naus vom dia", "electric shock sensation", "hyper arousal"]
+        "signs": ["3-7 day onset", "flu like", "insomnia", "naus/vom/dia", "electric shock sensation", "hyper arousal"]
       },
       {
         "label": "Serotonin Syndrome",
-        "signs": ["Delirium", "Agitation", "Fever, diaphoresis", "Ocular clonus", "Tachycardia, HTN", "Myoclonus seizure", "Hyperreflexia", "Diarrhea"]
+        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea"]
       }
     ],
     "notes": []
@@ -85,7 +85,7 @@
       "teratogen",
       {
         "label": "Serotonin Syndrome",
-        "signs": ["Delirium", "Agitation", "Fever, diaphoresis", "Ocular clonus", "Tachycardia, HTN", "Myoclonus seizure", "Hyperreflexia", "Diarrhea"]
+        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea"]
       }
     ],
     "notes": ["MAO breaks down NTs presynaptic neuron"]
