@@ -16,6 +16,7 @@
     "label": "SSRI",
     "drugs": ["Sertraline", "Fluoxetine", "Citalopram"],
     "onset": ["weeks, full trial 3 months"],
+    "mechanism": ["blocks reuptake of serotonin (5HT)"],
     "targets": ["Serotonin Transporter (SERT)"],
     "side_effects": ["sexual dysfunction*", "anxiety", "insomnia"],
     "risks": [
@@ -35,6 +36,7 @@
     "label": "SNRI",
     "drugs": ["Venlafaxine", "Duloxetine", "levomilnacipran"],
     "onset": ["weeks, full trial 3 months"],
+    "mechanism": ["blocks reuptake of serotonin (5HT)","blocks reputake of norepinephrine"],
     "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)"],
     "side_effects": ["sexual dysfunction*", "anxiety", "insomnia", "htn", "tachycardia"],
     "risks": [
@@ -54,6 +56,7 @@
     "label": "NDRI",
     "drugs": ["Bupropion"],
     "onset": ["weeks, full trial 3 months"],
+    "mechanism": ["blocks reputake of norepinephrine","blocks reputake of dopamine"],
     "targets": ["Norepinephrine Transporter (NET)","Dopamine Transporter (DAT)"],
     "side_effects": ["headache", "agitation", "seizures", "sleep disturbances", "decreased appetite", "weight loss", "sweating"],
     "risks": ["seizure", "cardiovascular", "withdrawal"],
@@ -73,7 +76,8 @@
     "id": "tca",
     "label": "TCA",
     "drugs": ["Amitriptyline", "Amoxapine", "Clomipramine", "Desipramine", "Doxapin", "Imipramine", "Maprotiline", "Nortriptyline", "Protriptyline"],
-    "onset": ["weeks, full trial 3 months"],    
+    "onset": ["weeks, full trial 3 months"],   
+    "mechanism": ["messy blockade"],
     "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)", "Histamine receptor", "α1 adrenergic receptor", "muscarinic receptor"],
     "side_effects": ["weight gain ++", "drowsiness (histamine block)", "dizziness", "orthohypo"],
     "risks": ["toxic dose is only 5-10x therapeutic dose"],
@@ -84,7 +88,8 @@
     "label": "MAOI",
     "drugs": ["Isocarboxazid", "Phenelzine", "Tranylcypromine"],
     "onset": ["weeks, full trial 3 months"],
-    "targets": ["monoamine oxidase (inhibits)"],
+    "mechanism": ["inhibits monamine oxidase (more NT available for release)"],
+    "targets": ["monoamine oxidase"],
     "side_effects": [],
     "risks": [
       "teratogen",
