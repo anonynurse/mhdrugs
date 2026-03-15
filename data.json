@@ -16,7 +16,7 @@
     "label": "SSRI",
     "drugs": ["Sertraline", "Fluoxetine", "Citalopram"],
     "targets": ["Serotonin Transporter (SERT)"],
-    "side_effects": ["sexual dysfunction", "anxiety", "insomnia"],
+    "side_effects": ["sexual dysfunction*", "anxiety", "insomnia"],
     "risks": [
       {
         "label": "Discontinuation Syndrome",
@@ -24,21 +24,25 @@
       },
       {
         "label": "Serotonin Syndrome",
-        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea"]
+        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea","taper slowly*"]
       }
     ],
-    "notes": []
+    "notes": ["first line antidepressant",]
   },
   {
     "id": "snri",
     "label": "SNRI",
-    "drugs": ["Venlafaxine", "Duloxetine"],
+    "drugs": ["Venlafaxine", "Duloxetine", "levomilnacipran"],
     "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)"],
-    "side_effects": [],
+    "side_effects": ["sexual dysfunction*", "anxiety", "insomnia", "htn", "tachycardia"],
     "risks": [
       {
         "label": "Discontinuation Syndrome",
         "signs": ["3-7 day onset", "flu like", "insomnia", "naus/vom/dia", "electric shock sensation", "hyper arousal"]
+      },
+      {
+        "label": "Serotonin Syndrome",
+        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea","taper slowly*"]
       }
     ],
     "notes": []
@@ -47,10 +51,10 @@
     "id": "ndri",
     "label": "NDRI",
     "drugs": ["Bupropion"],
-    "targets": [],
-    "side_effects": [],
-    "risks": [],
-    "notes": []
+    "targets": ["inhibits norepi and dopamine"],
+    "side_effects": ["headache", "agitation", "seizures", "sleep disturbances", "decreased appetite", "weight loss", "sweating"],
+    "risks": ["seizure", "cardiovascular", "withdrawal"],
+    "notes": ["used for smoking cessation, sexual dysfunction, depression"]
   },
   {
     "id": "anticonvulsant",
@@ -61,10 +65,6 @@
       "Lamotrigine (used for depressive phase)"
     ],
     "mechanism": ["anti-kindling", "enhance gaba, inhibit gluta", "restablish balanace between excite and inhib paths"],
-    "targets": [],
-    "side_effects": [],
-    "risks": [],
-    "notes": []
   },
   {
     "id": "tca",
@@ -72,8 +72,8 @@
     "drugs": ["Amitriptyline","Amoxapine","Clomipramine","Desipramine","Doxapin","Imipramine","Maprotiline","Nortriptyline","Protriptyline"],
     "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)", "Histamine receptor", "α1 adrenergic receptor", "muscarinic receptor"],
     "side_effects": ["weight gain ++", "drowsiness (histamine block)", "dizziness", "orthohypo"],
-    "risks": [],
-    "notes": []
+    "risks": ["toxic dose is only 5-10x therapeutic dose"],
+    "notes": ["block channels in heart and brain", "delay in effect up to 10 days"]
   },
   {
     "id": "maoi",
@@ -82,12 +82,16 @@
     "targets": ["monoamine oxidase (inhibits)"],
     "side_effects": [],
     "risks": [
-      "teratogen",
+      "teratogen", "interact with tyramine", "toxic dose is only 5-10x therapeutic dose",
       {
         "label": "Serotonin Syndrome",
         "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea"]
-      }
+      },
+      {
+        "label": "Hypertensive crises",
+        "signs": ["severe headache","flushing","sweating","fever","tachycardia","palpitations","hypertension","seizure","stroke","15-90min onset","avoid aged and fermented foods"]
+      }	
     ],
-    "notes": ["MAO breaks down NTs presynaptic neuron"]
+    "notes": ["MAO breaks down NTs presynaptic neuron", "delay in effect up to 10 days"]
   }
 ]
