@@ -38,7 +38,7 @@
     "mechanism": ["blocks reuptake of serotonin (5HT)","blocks reputake of norepinephrine"],
     "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)"],
     "onset": ["weeks, full trial 3 months"],
-    "side_effects": ["sexual dysfunction*", "anxiety", "insomnia", "htn", "tachycardia"],
+    "side_effects": ["sexual dysfunction*", "anxiety", "insomnia", "hypertension", "tachycardia"],
     "risks": [
       {
         "label": "Discontinuation Syndrome",
@@ -100,7 +100,7 @@
       "toxic dose is only 5-10x therapeutic dose",
       {
         "label": "Serotonin Syndrome",
-        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea"]
+        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia", "hypertension", "myoclonus seizure", "hyperreflexia", "diarrhea"]
       },
       {
         "label": "Hypertensive crises",
