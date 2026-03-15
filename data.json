@@ -69,9 +69,9 @@
   {
     "id": "tca",
     "label": "TCA",
-    "drugs": [],
-    "targets": [],
-    "side_effects": [],
+    "drugs": ["amitriptyline","amoxapine","clomipramine","desipramine","doxapin","imipramine","maprotiline","nortriptyline","protriptyline"],
+    "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)", "Histamine receptor", "α1 adrenergic receptor", "muscarinic receptor"],
+    "side_effects": ["weight gain ++", "drowsiness (histamine block)", "dizziness", "orthohypo"],
     "risks": [],
     "notes": []
   },
