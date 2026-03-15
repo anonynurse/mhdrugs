@@ -24,10 +24,10 @@
       },
       {
         "label": "Serotonin Syndrome",
-        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea","taper slowly*"]
+        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea", "taper slowly*"]
       }
     ],
-    "notes": ["first line antidepressant",]
+    "notes": ["first line antidepressant"]
   },
   {
     "id": "snri",
@@ -42,7 +42,7 @@
       },
       {
         "label": "Serotonin Syndrome",
-        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea","taper slowly*"]
+        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea", "taper slowly*"]
       }
     ],
     "notes": []
@@ -64,12 +64,12 @@
       "Divalproex Sodium (used for manic phase)",
       "Lamotrigine (used for depressive phase)"
     ],
-    "mechanism": ["anti-kindling", "enhance gaba, inhibit gluta", "restablish balanace between excite and inhib paths"],
+    "mechanism": ["anti-kindling", "enhance gaba, inhibit gluta", "restablish balanace between excite and inhib paths"]
   },
   {
     "id": "tca",
     "label": "TCA",
-    "drugs": ["Amitriptyline","Amoxapine","Clomipramine","Desipramine","Doxapin","Imipramine","Maprotiline","Nortriptyline","Protriptyline"],
+    "drugs": ["Amitriptyline", "Amoxapine", "Clomipramine", "Desipramine", "Doxapin", "Imipramine", "Maprotiline", "Nortriptyline", "Protriptyline"],
     "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)", "Histamine receptor", "α1 adrenergic receptor", "muscarinic receptor"],
     "side_effects": ["weight gain ++", "drowsiness (histamine block)", "dizziness", "orthohypo"],
     "risks": ["toxic dose is only 5-10x therapeutic dose"],
@@ -78,19 +78,21 @@
   {
     "id": "maoi",
     "label": "MAOI",
-    "drugs": ["Isocarboxazid","Phenelzine","Tranylcypromine"],
+    "drugs": ["Isocarboxazid", "Phenelzine", "Tranylcypromine"],
     "targets": ["monoamine oxidase (inhibits)"],
     "side_effects": [],
     "risks": [
-      "teratogen", "interact with tyramine", "toxic dose is only 5-10x therapeutic dose",
+      "teratogen",
+      "interact with tyramine",
+      "toxic dose is only 5-10x therapeutic dose",
       {
         "label": "Serotonin Syndrome",
         "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea"]
       },
       {
         "label": "Hypertensive crises",
-        "signs": ["severe headache","flushing","sweating","fever","tachycardia","palpitations","hypertension","seizure","stroke","15-90min onset","avoid aged and fermented foods"]
-      }	
+        "signs": ["severe headache", "flushing", "sweating", "fever", "tachycardia", "palpitations", "hypertension", "seizure", "stroke", "15-90min onset", "avoid aged and fermented foods"]
+      }
     ],
     "notes": ["MAO breaks down NTs presynaptic neuron", "delay in effect up to 10 days"]
   }
