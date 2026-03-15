@@ -81,7 +81,15 @@
     "drugs": ["isocarboxazid","phenelzine","tranylcypromine"],
     "targets": ["monoamine oxidase (inhibits)"],
     "side_effects": [],
-    "risks": [],
+        "risks": [
+      {
+        "teratogen"
+      },
+      {
+        "label": "Serotonin Syndrome",
+        "signs": ["Delirium", "Agitation", "Fever, diaphoresis", "Ocular clonus", "Tachycardia, HTN", "Myoclonus seizure", "Hyperreflexia", "Diarrhea"]
+      }
+    ],
     "notes": ["MAO breaks down NTs presynaptic neuron"]
   }
 ]
