@@ -26,7 +26,7 @@
       },
       {
         "label": "Serotonin Syndrome",
-        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea"]
+        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia", "hypertension", "myoclonus seizure", "hyperreflexia", "diarrhea"]
       }
     ],
     "notes": ["first line antidepressant"]
@@ -46,7 +46,7 @@
       },
       {
         "label": "Serotonin Syndrome",
-        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia, HTN", "myoclonus seizure", "hyperreflexia", "diarrhea"]
+        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia", "hypertension", "myoclonus seizure", "hyperreflexia", "diarrhea"]
       }
     ],
     "notes": []
