@@ -78,10 +78,10 @@
   {
     "id": "maoi",
     "label": "MAOI",
-    "drugs": [],
-    "targets": [],
+    "drugs": ["isocarboxazid","phenelzine","tranylcypromine"],
+    "targets": ["monoamine oxidase (inhibits)"],
     "side_effects": [],
     "risks": [],
-    "notes": []
+    "notes": ["MAO breaks down NTs presynaptic neuron"]
   }
 ]
