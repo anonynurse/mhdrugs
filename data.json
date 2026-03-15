@@ -22,7 +22,7 @@
     "risks": [
       {
         "label": "Discontinuation Syndrome",
-        "signs": ["3-7 day onset", "flu like", "insomnia", "naus/vom/dia", "electric shock sensation", "hyper arousal"]
+        "signs": ["3-7 day onset", "flu like", "insomnia", "naus/vom/dia", "sensory disturbances (electric shock sensation)", "hyper arousal"]
       },
       {
         "label": "Serotonin Syndrome",
@@ -42,7 +42,7 @@
     "risks": [
       {
         "label": "Discontinuation Syndrome",
-        "signs": ["3-7 day onset", "flu like", "insomnia", "naus/vom/dia", "electric shock sensation", "hyper arousal"]
+        "signs": ["3-7 day onset", "flu like", "insomnia", "naus/vom/dia", "sensory disturbances (electric shock sensation)", "hyper arousal"]
       },
       {
         "label": "Serotonin Syndrome",
@@ -80,7 +80,7 @@
     "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)", "Histamine receptor", "α1 adrenergic receptor", "muscarinic receptor"],
     "onset": ["weeks, full trial 3 months"],     
     "side_effects": ["weight gain ++", "drowsiness (histamine block)", "dizziness", "orthohypo"],
-    "risks": ["toxic dose is only 5-10x therapeutic dose"],
+    "risks": ["toxic dose is only 5-10x therapeutic dose", "serious cardiovascular risks"],
     "notes": ["block channels in heart and brain", "delay in effect up to 10 days"]
   },
   {
@@ -94,6 +94,7 @@
     "risks": [
       "teratogen",
       "interact with tyramine",
+      "cardiovascular",
       "toxic dose is only 5-10x therapeutic dose",
       {
         "label": "Serotonin Syndrome",
