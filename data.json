@@ -69,7 +69,7 @@
   {
     "id": "tca",
     "label": "TCA",
-    "drugs": ["amitriptyline","amoxapine","clomipramine","desipramine","doxapin","imipramine","maprotiline","nortriptyline","protriptyline"],
+    "drugs": ["Amitriptyline","Amoxapine","Clomipramine","Desipramine","Doxapin","Imipramine","Maprotiline","Nortriptyline","Protriptyline"],
     "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)", "Histamine receptor", "α1 adrenergic receptor", "muscarinic receptor"],
     "side_effects": ["weight gain ++", "drowsiness (histamine block)", "dizziness", "orthohypo"],
     "risks": [],
@@ -78,7 +78,7 @@
   {
     "id": "maoi",
     "label": "MAOI",
-    "drugs": ["isocarboxazid","phenelzine","tranylcypromine"],
+    "drugs": ["Isocarboxazid","Phenelzine","Tranylcypromine"],
     "targets": ["monoamine oxidase (inhibits)"],
     "side_effects": [],
     "risks": [
