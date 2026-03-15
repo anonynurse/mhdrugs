@@ -33,8 +33,8 @@
   {
     "id": "snri",
     "label": "SNRI",
-    "onset": ["weeks, full trial 3 months"],
     "drugs": ["Venlafaxine", "Duloxetine", "levomilnacipran"],
+    "onset": ["weeks, full trial 3 months"],
     "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)"],
     "side_effects": ["sexual dysfunction*", "anxiety", "insomnia", "htn", "tachycardia"],
     "risks": [
