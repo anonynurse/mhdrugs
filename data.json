@@ -16,8 +16,8 @@
     "label": "SSRI",
     "drugs": ["Sertraline", "Fluoxetine", "Citalopram"],
     "mechanism": ["blocks reuptake of serotonin (5HT)"],
-    "onset": ["weeks, full trial 3 months"],
     "targets": ["Serotonin Transporter (SERT)"],
+    "onset": ["weeks, full trial 3 months"],
     "side_effects": ["sexual dysfunction*", "anxiety", "insomnia"],
     "risks": [
       {
@@ -36,8 +36,8 @@
     "label": "SNRI",
     "drugs": ["Venlafaxine", "Duloxetine", "levomilnacipran"],
     "mechanism": ["blocks reuptake of serotonin (5HT)","blocks reputake of norepinephrine"],
-    "onset": ["weeks, full trial 3 months"],
     "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)"],
+    "onset": ["weeks, full trial 3 months"],
     "side_effects": ["sexual dysfunction*", "anxiety", "insomnia", "htn", "tachycardia"],
     "risks": [
       {
@@ -56,8 +56,8 @@
     "label": "NDRI",
     "drugs": ["Bupropion"],
     "mechanism": ["blocks reputake of norepinephrine","blocks reputake of dopamine"],
-    "onset": ["weeks, full trial 3 months"],
     "targets": ["Norepinephrine Transporter (NET)","Dopamine Transporter (DAT)"],
+    "onset": ["weeks, full trial 3 months"],
     "side_effects": ["headache", "agitation", "seizures", "sleep disturbances", "decreased appetite", "weight loss", "sweating"],
     "risks": ["seizure", "cardiovascular", "withdrawal"],
     "notes": ["used for smoking cessation, sexual dysfunction, depression"]
@@ -77,8 +77,8 @@
     "label": "TCA",
     "drugs": ["Amitriptyline", "Amoxapine", "Clomipramine", "Desipramine", "Doxapin", "Imipramine", "Maprotiline", "Nortriptyline", "Protriptyline"],
     "mechanism": ["messy blockade (lots of receptors)"],
-    "onset": ["weeks, full trial 3 months"],     
     "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)", "Histamine receptor", "α1 adrenergic receptor", "muscarinic receptor"],
+    "onset": ["weeks, full trial 3 months"],     
     "side_effects": ["weight gain ++", "drowsiness (histamine block)", "dizziness", "orthohypo"],
     "risks": ["toxic dose is only 5-10x therapeutic dose"],
     "notes": ["block channels in heart and brain", "delay in effect up to 10 days"]
@@ -88,8 +88,8 @@
     "label": "MAOI",
     "drugs": ["Isocarboxazid", "Phenelzine", "Tranylcypromine"],
     "mechanism": ["inhibits monamine oxidase (more NT available for release)"],
-    "onset": ["weeks, full trial 3 months"],
     "targets": ["monoamine oxidase"],
+    "onset": ["weeks, full trial 3 months"],
     "side_effects": [],
     "risks": [
       "teratogen",
