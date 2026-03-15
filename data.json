@@ -54,7 +54,7 @@
     "label": "NDRI",
     "drugs": ["Bupropion"],
     "onset": ["weeks, full trial 3 months"],
-    "targets": ["inhibits norepi and dopamine"],
+    "targets": ["Norepinephrine Transporter (NET)","Dopamine Transporter (DAT)"],
     "side_effects": ["headache", "agitation", "seizures", "sleep disturbances", "decreased appetite", "weight loss", "sweating"],
     "risks": ["seizure", "cardiovascular", "withdrawal"],
     "notes": ["used for smoking cessation, sexual dysfunction, depression"]
