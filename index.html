@@ -411,10 +411,13 @@ function handleDrop(catId, subId, parentItemId) {
   const pill = document.getElementById('pill-' + item.id);
   if (!pill) return;
 
-  // Only two things make a drop correct:
-  // 1. The category is one of the item's correct categories
-  // 2. The subsection type matches exactly
-  const isCorrect = item.correctCats.has(catId) && item.type === subId;
+  // Correctness checks:
+  // 1. Category must be one of the item's correct categories
+  // 2. Subsection type must match exactly
+  // 3. For child items (signs), the drop zone's parentItemId must match item.parentId
+  const correctCatAndType = item.correctCats.has(catId) && item.type === subId;
+  const correctParent = !item.parentId || (parentItemId === item.parentId);
+  const isCorrect = correctCatAndType && correctParent;
 
   if (!isCorrect) {
     shake(pill);
@@ -422,9 +425,6 @@ function handleDrop(catId, subId, parentItemId) {
     return;
   }
 
-  // For child items dropped into a nested zone, we also need the
-  // parentItemId to match — but this is NOT a shake, just a silent ignore,
-  // since the correct cat/type already passed
   const slotKey = `${catId}|${subId}` + (parentItemId ? `|${parentItemId}` : '');
   if (placedLog[item.id] && placedLog[item.id].has(slotKey)) return;
   if (!placedLog[item.id]) placedLog[item.id] = new Set();
