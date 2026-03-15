@@ -15,6 +15,7 @@
     "id": "ssri",
     "label": "SSRI",
     "drugs": ["Sertraline", "Fluoxetine", "Citalopram"],
+    "onset": ["weeks, full trial 3 months"],
     "targets": ["Serotonin Transporter (SERT)"],
     "side_effects": ["sexual dysfunction*", "anxiety", "insomnia"],
     "risks": [
@@ -32,6 +33,7 @@
   {
     "id": "snri",
     "label": "SNRI",
+    "onset": ["weeks, full trial 3 months"],
     "drugs": ["Venlafaxine", "Duloxetine", "levomilnacipran"],
     "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)"],
     "side_effects": ["sexual dysfunction*", "anxiety", "insomnia", "htn", "tachycardia"],
@@ -51,6 +53,7 @@
     "id": "ndri",
     "label": "NDRI",
     "drugs": ["Bupropion"],
+    "onset": ["weeks, full trial 3 months"],
     "targets": ["inhibits norepi and dopamine"],
     "side_effects": ["headache", "agitation", "seizures", "sleep disturbances", "decreased appetite", "weight loss", "sweating"],
     "risks": ["seizure", "cardiovascular", "withdrawal"],
@@ -70,6 +73,7 @@
     "id": "tca",
     "label": "TCA",
     "drugs": ["Amitriptyline", "Amoxapine", "Clomipramine", "Desipramine", "Doxapin", "Imipramine", "Maprotiline", "Nortriptyline", "Protriptyline"],
+    "onset": ["weeks, full trial 3 months"],    
     "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)", "Histamine receptor", "α1 adrenergic receptor", "muscarinic receptor"],
     "side_effects": ["weight gain ++", "drowsiness (histamine block)", "dizziness", "orthohypo"],
     "risks": ["toxic dose is only 5-10x therapeutic dose"],
@@ -79,6 +83,7 @@
     "id": "maoi",
     "label": "MAOI",
     "drugs": ["Isocarboxazid", "Phenelzine", "Tranylcypromine"],
+    "onset": ["weeks, full trial 3 months"],
     "targets": ["monoamine oxidase (inhibits)"],
     "side_effects": [],
     "risks": [
