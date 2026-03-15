@@ -59,7 +59,7 @@
     "targets": ["Norepinephrine Transporter (NET)","Dopamine Transporter (DAT)"],
     "onset": ["weeks, full trial 3 months"],
     "side_effects": ["headache", "agitation", "seizures", "sleep disturbances", "decreased appetite", "weight loss", "sweating"],
-    "risks": ["seizure", "cardiovascular", "withdrawal"],
+    "risks": ["seizure", "cardiac irregularities", "withdrawal"],
     "notes": ["used for smoking cessation, sexual dysfunction, depression"]
   },
   {
@@ -68,7 +68,8 @@
     "drugs": [
       "Carbamazepine",
       "Divalproex Sodium (used for manic phase)",
-      "Lamotrigine (used for depressive phase)"
+      "Lamotrigine (used for depressive phase)",
+      "valproic acid"
     ],
     "mechanism": ["anti-kindling", "enhance gaba, inhibit gluta", "restablish balanace between excite and inhib paths"]
   },
@@ -94,7 +95,8 @@
     "risks": [
       "teratogen",
       "interact with tyramine",
-      "cardiovascular",
+      "cardiac irregularities",
+      "orthohypo",
       "toxic dose is only 5-10x therapeutic dose",
       {
         "label": "Serotonin Syndrome",
