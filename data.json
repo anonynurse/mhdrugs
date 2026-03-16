@@ -1,50 +1,5 @@
 [
   {
-    "id": "mood-stabilizer",
-    "label": "Mood Stabilizer",
-    "drugs": [
-      "Lithium"
-    ],
-    "mechanism": [
-      "modulates neurotransmission"
-    ],
-    "onset": [
-      "10 - 21 days"
-    ],
-    "side_effects": [
-      "Weight gain",
-      "fine motor tremors*",
-      "polyuria*",
-      "thirst",
-      "mental slowness",
-      "poor concentration and memory"
-    ],
-    "risks": [
-      "narrow therapeutic index 0.6 - 1.2",
-      "renal damage"
-    ],
-    "signs of toxicity - early": [
-      "diarrhea",
-      "lethargy",
-      "slurred speech",
-      "muscle weakness"
-    ],
-    "signs of toxicity - late": [
-      "polyuria++",
-      "confusion",
-      "ataxia",
-      "seizures",
-      "hypotension",
-      "coma"
-    ],
-    "notes": [
-      "mimics sodium",
-      "toxicity ≥ 1.5 mmol/L",
-      "monitor levels frequently until stabilized, then q3month",
-      "alters electrical conductivity in the body"
-    ]
-  },
-  {
     "id": "ssri",
     "label": "SSRI",
     "drugs": [
@@ -142,21 +97,6 @@
     ]
   },
   {
-    "id": "anticonvulsant",
-    "label": "Anticonvulsant (used for bipolar)",
-    "drugs": [
-      "Carbamazepine",
-      "Divalproex Sodium (used for manic phase)",
-      "Lamotrigine (used for depressive phase)",
-      "valproic acid"
-    ],
-    "mechanism": [
-      "anti-kindling",
-      "enhance gaba, inhibit gluta",
-      "restablish balance between excite and inhib paths"
-    ]
-  },
-  {
     "id": "tca",
     "label": "TCA",
     "drugs": [
@@ -249,6 +189,21 @@
     ]
   },
   {
+    "id": "serotonin-syndrome",
+    "label": "Serotonin Syndrome",
+    "signs": [
+      "delirium",
+      "agitation",
+      "fever, diaphoresis",
+      "ocular clonus",
+      "tachycardia",
+      "hypertension",
+      "myoclonus seizure",
+      "hyperreflexia",
+      "diarrhea"
+    ]
+  },
+  {
     "id": "discontinuation-syndrome",
     "label": "Discontinuation Syndrome",
     "signs": [
@@ -262,18 +217,63 @@
     ]
   },
   {
-    "id": "serotonin-syndrome",
-    "label": "Serotonin Syndrome",
-    "signs": [
-      "delirium",
-      "agitation",
-      "fever, diaphoresis",
-      "ocular clonus",
-      "tachycardia",
-      "hypertension",
-      "myoclonus seizure",
-      "hyperreflexia",
-      "diarrhea"
+    "id": "mood-stabilizer",
+    "label": "Mood Stabilizer",
+    "drugs": [
+      "Lithium"
+    ],
+    "mechanism": [
+      "modulates neurotransmission"
+    ],
+    "onset": [
+      "10 - 21 days"
+    ],
+    "side_effects": [
+      "Weight gain",
+      "fine motor tremors*",
+      "polyuria*",
+      "thirst",
+      "mental slowness",
+      "poor concentration and memory"
+    ],
+    "risks": [
+      "narrow therapeutic index 0.6 - 1.2",
+      "renal damage"
+    ],
+    "signs of toxicity - early": [
+      "diarrhea",
+      "lethargy",
+      "slurred speech",
+      "muscle weakness"
+    ],
+    "signs of toxicity - late": [
+      "polyuria++",
+      "confusion",
+      "ataxia",
+      "seizures",
+      "hypotension",
+      "coma"
+    ],
+    "notes": [
+      "mimics sodium",
+      "toxicity ≥ 1.5 mmol/L",
+      "monitor levels frequently until stabilized, then q3month",
+      "alters electrical conductivity in the body"
+    ]
+  },
+  {
+    "id": "anticonvulsant",
+    "label": "Anticonvulsant (used for bipolar)",
+    "drugs": [
+      "Carbamazepine",
+      "Divalproex Sodium (used for manic phase)",
+      "Lamotrigine (used for depressive phase)",
+      "valproic acid"
+    ],
+    "mechanism": [
+      "anti-kindling",
+      "enhance gaba, inhibit gluta",
+      "restablish balance between excite and inhib paths"
     ]
   }
 ]
