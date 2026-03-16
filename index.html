@@ -254,6 +254,28 @@ function buildGrid(categories) {
   attachDropZoneListeners();
 }
 
+function expectedCountForZone(catId, subId, parentItemId = null) {
+  return allItems.filter(item =>
+    item.correctCats.has(catId) &&
+    item.type === subId &&
+    (item.parentId || null) === parentItemId
+  ).length;
+}
+
+function countPlacedInZone(zone) {
+  return [...zone.children].filter(el => el.classList && el.classList.contains('placed-pill')).length;
+}
+
+function updateZoneCompletionState(zone) {
+  if (!zone) return;
+  const catId = zone.dataset.cat;
+  const subId = zone.dataset.sub;
+  const parentItemId = zone.dataset.parentItemId || null;
+  const expected = expectedCountForZone(catId, subId, parentItemId);
+  const placed = countPlacedInZone(zone);
+  zone.classList.toggle('complete', expected > 0 && placed >= expected);
+}
+
 function attachDropZoneListeners() {
   document.querySelectorAll('.sub-pills').forEach(zone => {
     if (zone.dataset.listenersAttached) return;
@@ -438,7 +460,10 @@ function handleDrop(catId, subId, parentItemId) {
     ? `nested-${catId}-${subId}-${parentItemId}`
     : `pills-${catId}-${subId}`;
   const zone = document.getElementById(zoneId);
-  if (zone) zone.appendChild(placed);
+  if (zone) {
+    zone.appendChild(placed);
+    updateZoneCompletionState(zone);
+  }
 
   // If this parent has children, reveal their nested drop zones
   if (item.children.length) {
@@ -517,6 +542,7 @@ async function initGame() {
   allItems = parseData(categories);
   buildGrid(categories);
   buildPool();
+  document.querySelectorAll('.sub-pills').forEach(updateZoneCompletionState);
 }
 
 initGame();
