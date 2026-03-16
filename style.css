@@ -295,6 +295,12 @@ h1 {
   background: rgba(127,219,255,0.04);
 }
 
+.sub-pills.complete {
+  border-style: solid;
+  border-color: #2a6a8a;
+  background: rgba(127,219,255,0.03);
+}
+
 /* ── Placed pills ── */
 .placed-pill {
   background: transparent;
