@@ -2,65 +2,144 @@
   {
     "id": "mood-stabilizer",
     "label": "Mood Stabilizer",
-    "drugs": ["Lithium"],
-    "mechanism": ["modulates neurotransmission"],
-    "onset": ["10 - 21 days"],
-    "side_effects": ["Weight gain", "fine motor tremors*", "polyuria*", "thirst", "mental slowness", "poor concentration and memory"],
-    "risks": ["narrow therapeutic index 0.6 - 1.2", "renal damage"],
-    "signs of toxicity - early": ["diarrhea", "lethargy", "slurred speech", "muscle weakness"],
-    "signs of toxicity - late": ["polyuria++", "confusion", "ataxia", "seizures", "hypotension", "coma"],
-    "notes": ["mimics sodium", "toxicity ≥ 1.5 mmol/L", "monitor levels frequently until stabilized, then q3month", "alters electrical conductivity in the body"]
+    "drugs": [
+      "Lithium"
+    ],
+    "mechanism": [
+      "modulates neurotransmission"
+    ],
+    "onset": [
+      "10 - 21 days"
+    ],
+    "side_effects": [
+      "Weight gain",
+      "fine motor tremors*",
+      "polyuria*",
+      "thirst",
+      "mental slowness",
+      "poor concentration and memory"
+    ],
+    "risks": [
+      "narrow therapeutic index 0.6 - 1.2",
+      "renal damage"
+    ],
+    "signs of toxicity - early": [
+      "diarrhea",
+      "lethargy",
+      "slurred speech",
+      "muscle weakness"
+    ],
+    "signs of toxicity - late": [
+      "polyuria++",
+      "confusion",
+      "ataxia",
+      "seizures",
+      "hypotension",
+      "coma"
+    ],
+    "notes": [
+      "mimics sodium",
+      "toxicity ≥ 1.5 mmol/L",
+      "monitor levels frequently until stabilized, then q3month",
+      "alters electrical conductivity in the body"
+    ]
   },
   {
     "id": "ssri",
     "label": "SSRI",
-    "drugs": ["Sertraline", "Fluoxetine", "Citalopram"],
-    "mechanism": ["blocks reuptake of serotonin (5HT)"],
-    "targets": ["Serotonin Transporter (SERT)"],
-    "onset": ["weeks, full trial 3 months"],
-    "side_effects": ["sexual dysfunction*", "anxiety", "insomnia"],
-    "risks": [
-      {
-        "label": "Discontinuation Syndrome",
-        "signs": ["3-7 day onset", "flu like", "insomnia", "naus/vom/dia", "sensory disturbances (electric shock sensation)", "hyper arousal", "taper slowly*"]
-      },
-      {
-        "label": "Serotonin Syndrome",
-        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia", "hypertension", "myoclonus seizure", "hyperreflexia", "diarrhea"]
-      }
+    "drugs": [
+      "Sertraline",
+      "Fluoxetine",
+      "Citalopram"
     ],
-    "notes": ["first line antidepressant"]
+    "mechanism": [
+      "blocks reuptake of serotonin (5HT)"
+    ],
+    "targets": [
+      "Serotonin Transporter (SERT)"
+    ],
+    "onset": [
+      "weeks, full trial 3 months"
+    ],
+    "side_effects": [
+      "sexual dysfunction*",
+      "anxiety",
+      "insomnia"
+    ],
+    "risks": [
+      "Discontinuation Syndrome",
+      "Serotonin Syndrome"
+    ],
+    "notes": [
+      "first line antidepressant"
+    ]
   },
   {
     "id": "snri",
     "label": "SNRI",
-    "drugs": ["Venlafaxine", "Duloxetine", "levomilnacipran"],
-    "mechanism": ["blocks reuptake of serotonin (5HT)","blocks reputake of norepinephrine"],
-    "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)"],
-    "onset": ["weeks, full trial 3 months"],
-    "side_effects": ["sexual dysfunction*", "anxiety", "insomnia", "hypertension", "tachycardia"],
+    "drugs": [
+      "Venlafaxine",
+      "Duloxetine",
+      "levomilnacipran"
+    ],
+    "mechanism": [
+      "blocks reuptake of serotonin (5HT)",
+      "blocks reputake of norepinephrine"
+    ],
+    "targets": [
+      "Serotonin Transporter (SERT)",
+      "Norepinephrine Transporter (NET)"
+    ],
+    "onset": [
+      "weeks, full trial 3 months"
+    ],
+    "side_effects": [
+      "sexual dysfunction*",
+      "anxiety",
+      "insomnia",
+      "hypertension",
+      "tachycardia"
+    ],
     "risks": [
-      {
-        "label": "Discontinuation Syndrome",
-        "signs": ["3-7 day onset", "flu like", "insomnia", "naus/vom/dia", "sensory disturbances (electric shock sensation)", "hyper arousal", "taper slowly*"]
-      },
-      {
-        "label": "Serotonin Syndrome",
-        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia", "hypertension", "myoclonus seizure", "hyperreflexia", "diarrhea"]
-      }
+      "Discontinuation Syndrome",
+      "Serotonin Syndrome"
     ],
     "notes": []
   },
   {
     "id": "ndri",
     "label": "NDRI",
-    "drugs": ["Bupropion"],
-    "mechanism": ["blocks reputake of norepinephrine","blocks reputake of dopamine"],
-    "targets": ["Norepinephrine Transporter (NET)","Dopamine Transporter (DAT)"],
-    "onset": ["weeks, full trial 3 months"],
-    "side_effects": ["headache", "agitation", "seizures", "sleep disturbances", "decreased appetite", "weight loss", "sweating"],
-    "risks": ["seizure", "cardiac irregularities", "withdrawal"],
-    "notes": ["used for smoking cessation, sexual dysfunction, depression"]
+    "drugs": [
+      "Bupropion"
+    ],
+    "mechanism": [
+      "blocks reputake of norepinephrine",
+      "blocks reputake of dopamine"
+    ],
+    "targets": [
+      "Norepinephrine Transporter (NET)",
+      "Dopamine Transporter (DAT)"
+    ],
+    "onset": [
+      "weeks, full trial 3 months"
+    ],
+    "side_effects": [
+      "headache",
+      "agitation",
+      "seizures",
+      "sleep disturbances",
+      "decreased appetite",
+      "weight loss",
+      "sweating"
+    ],
+    "risks": [
+      "seizure",
+      "cardiac irregularities",
+      "withdrawal"
+    ],
+    "notes": [
+      "used for smoking cessation, sexual dysfunction, depression"
+    ]
   },
   {
     "id": "anticonvulsant",
@@ -71,26 +150,73 @@
       "Lamotrigine (used for depressive phase)",
       "valproic acid"
     ],
-    "mechanism": ["anti-kindling", "enhance gaba, inhibit gluta", "restablish balance between excite and inhib paths"]
+    "mechanism": [
+      "anti-kindling",
+      "enhance gaba, inhibit gluta",
+      "restablish balance between excite and inhib paths"
+    ]
   },
   {
     "id": "tca",
     "label": "TCA",
-    "drugs": ["Amitriptyline", "Amoxapine", "Clomipramine", "Desipramine", "Doxapin", "Imipramine", "Maprotiline", "Nortriptyline", "Protriptyline"],
-    "mechanism": ["messy blockade (lots of receptors)"],
-    "targets": ["Serotonin Transporter (SERT)", "Norepinephrine Transporter (NET)", "Histamine receptor", "α1 adrenergic receptor", "muscarinic receptor"],
-    "onset": ["weeks, full trial 3 months"],     
-    "side_effects": ["weight gain ++", "drowsiness (histamine block)", "dizziness", "orthohypo"],
-    "risks": ["toxic dose is only 5-10x therapeutic dose", "serious cardiovascular risks"],
-    "notes": ["block channels in heart and brain", "delay in effect up to 10 days"]
+    "drugs": [
+      "Amitriptyline",
+      "Amoxapine",
+      "Clomipramine",
+      "Desipramine",
+      "Doxapin",
+      "Imipramine",
+      "Maprotiline",
+      "Nortriptyline",
+      "Protriptyline"
+    ],
+    "mechanism": [
+      "messy blockade (lots of receptors)"
+    ],
+    "targets": [
+      "Serotonin Transporter (SERT)",
+      "Norepinephrine Transporter (NET)",
+      "Histamine receptor",
+      "α1 adrenergic receptor",
+      "muscarinic receptor"
+    ],
+    "onset": [
+      "weeks, full trial 3 months"
+    ],
+    "side_effects": [
+      "weight gain ++",
+      "drowsiness (histamine block)",
+      "dizziness",
+      "orthohypo"
+    ],
+    "risks": [
+      "toxic dose is only 5-10x therapeutic dose",
+      "serious cardiovascular risks",
+      "Discontinuation Syndrome",
+      "Serotonin Syndrome"
+    ],
+    "notes": [
+      "block channels in heart and brain",
+      "delay in effect up to 10 days"
+    ]
   },
   {
     "id": "maoi",
     "label": "MAOI",
-    "drugs": ["Isocarboxazid", "Phenelzine", "Tranylcypromine"],
-    "mechanism": ["inhibits monamine oxidase (more NT available for release)"],
-    "targets": ["monoamine oxidase"],
-    "onset": ["weeks, full trial 3 months"],
+    "drugs": [
+      "Isocarboxazid",
+      "Phenelzine",
+      "Tranylcypromine"
+    ],
+    "mechanism": [
+      "inhibits monamine oxidase (more NT available for release)"
+    ],
+    "targets": [
+      "monoamine oxidase"
+    ],
+    "onset": [
+      "weeks, full trial 3 months"
+    ],
     "side_effects": [],
     "risks": [
       "teratogen",
@@ -98,15 +224,56 @@
       "cardiac irregularities",
       "orthohypo",
       "toxic dose is only 5-10x therapeutic dose",
-      {
-        "label": "Serotonin Syndrome",
-        "signs": ["delirium", "agitation", "fever, diaphoresis", "ocular clonus", "tachycardia", "hypertension", "myoclonus seizure", "hyperreflexia", "diarrhea"]
-      },
+      "Discontinuation Syndrome",
+      "Serotonin Syndrome",
       {
         "label": "Hypertensive crises",
-        "signs": ["severe headache", "flushing", "sweating", "fever", "tachycardia", "palpitations", "hypertension", "seizure", "stroke", "15-90min onset", "avoid aged and fermented foods"]
+        "signs": [
+          "severe headache",
+          "flushing",
+          "sweating",
+          "fever",
+          "tachycardia",
+          "palpitations",
+          "hypertension",
+          "seizure",
+          "stroke",
+          "15-90min onset",
+          "avoid aged and fermented foods"
+        ]
       }
     ],
-    "notes": ["MAO breaks down NTs presynaptic neuron", "delay in effect up to 10 days"]
+    "notes": [
+      "MAO breaks down NTs presynaptic neuron",
+      "delay in effect up to 10 days"
+    ]
+  },
+  {
+    "id": "discontinuation-syndrome",
+    "label": "Discontinuation Syndrome",
+    "signs": [
+      "3-7 day onset",
+      "flu like",
+      "insomnia",
+      "naus/vom/dia",
+      "sensory disturbances (electric shock sensation)",
+      "hyper arousal",
+      "taper slowly*"
+    ]
+  },
+  {
+    "id": "serotonin-syndrome",
+    "label": "Serotonin Syndrome",
+    "signs": [
+      "delirium",
+      "agitation",
+      "fever, diaphoresis",
+      "ocular clonus",
+      "tachycardia",
+      "hypertension",
+      "myoclonus seizure",
+      "hyperreflexia",
+      "diarrhea"
+    ]
   }
 ]
