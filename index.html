@@ -97,10 +97,6 @@
   <p>Please rotate your device to landscape mode</p>
 </div>
 
-<header>
-  <h1>Drug Classifier</h1>
-</header>
-
 <div id="error-banner"></div>
 
 <div class="layout">
@@ -286,7 +282,6 @@ function attachDropZoneListeners() {
 // ── Build pool ─────────────────────────────────────────────────
 function buildPool() {
   const pool = document.getElementById('pool');
-  pool.innerHTML = '<div class="pool-header">[ Item Pool ]</div>';
   pool.addEventListener('dragover',  e => e.preventDefault());
   pool.addEventListener('dragenter', e => e.preventDefault());
 
